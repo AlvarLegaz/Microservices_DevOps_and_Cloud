@@ -1,4 +1,4 @@
 echo Power UP Scrip
 dir
-set FLASK_APP=app\\api.py
-start python -m flask run
+set FLASK_APP=app\api.py
+flask run
