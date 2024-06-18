@@ -62,6 +62,7 @@ class UsersJsonFileManager:
         print("Users list")
         for index, entry in enumerate(self.entries):
             print(f"Entrada {index}:", entry)
+        return self.entries
 
     def search_user(self, username):
         for indice, diccionario in enumerate(self.entries):

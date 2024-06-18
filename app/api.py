@@ -1,6 +1,7 @@
 import http.client
 
 from flask import Flask
+from flask import request
 
 import os
 from dotenv import load_dotenv
@@ -19,3 +20,19 @@ HEADERS = {"Content-Type": "text/plain", "Access-Control-Allow-Origin": "*"}
 @api_application.route("/")
 def hello():
     return ("Hello from users api", http.client.OK, HEADERS)
+
+@api_application.route("/test_hello_user/<name>/<int:verify_code>")
+def hello_user(name, verify_code):
+    hello_str = 'Hello user:'+name + " with verify_code:" + str(verify_code)
+    return (hello_str, http.client.OK, HEADERS)
+
+
+@api_application.route("/users", methods=['GET'])
+def get_users_list():
+    entries = db_Json_File.list_entries()
+    return (entries, http.client.OK, HEADERS)
+
+@api_application.route("/users", methods=['POST'])
+def set_user():
+    msj = request.form
+    return (msj, http.client.OK, HEADERS)
