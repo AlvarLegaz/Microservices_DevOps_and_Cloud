@@ -2,6 +2,7 @@ import http.client
 
 from flask import Flask
 from flask import request
+from flask import jsonify
 
 import os
 from dotenv import load_dotenv
@@ -34,7 +35,7 @@ def get_users_list():
 
 @api_application.route("/users", methods=['POST'])
 def set_user():
-    entry = request.form
+    entry = request.get_json()
     print(entry)
     db_Json_File.create_entry(entry)
-    return ("OK",http.client.OK, HEADERS)
+    return (entry, http.client.OK, HEADERS)

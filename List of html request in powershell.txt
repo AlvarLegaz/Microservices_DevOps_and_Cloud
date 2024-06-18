@@ -1,1 +1,3 @@
-Invoke-RestMethod -Uri "http://127.0.0.1:5000/users" -Method Post -Body "{'user': 'pedro', 'pass': '1234'}"
+$payload = @{user = 'pedro' pass = '1234'} | ConvertTo-Json
+
+Invoke-RestMethod -Uri "http://127.0.0.1:5000/users" -Method Post -Body $payload -ContentType "application/json"
