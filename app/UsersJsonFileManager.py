@@ -26,6 +26,7 @@ class UsersJsonFileManager:
                 print("Error: El nombre de usuario ya existe")
                 return -2
         else:
+            print("Recibido: " + str(data))
             print("Error: El formato de los datos es incorrecto. Debe ser {'user': 'nombre_usuario', 'pass': 'contraseña'}.")
             return -1
 

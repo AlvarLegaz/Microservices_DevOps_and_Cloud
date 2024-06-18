@@ -34,5 +34,7 @@ def get_users_list():
 
 @api_application.route("/users", methods=['POST'])
 def set_user():
-    msj = request.form
-    return (msj, http.client.OK, HEADERS)
+    entry = request.form
+    print(entry)
+    db_Json_File.create_entry(entry)
+    return ("OK",http.client.OK, HEADERS)
