@@ -1,9 +1,11 @@
 import app
 import json
+import hashlib
 
 class UsersJsonFileManager:
     def __init__(self, filename):
         self.filename = filename
+        self.hash_object = hashlib.sha256()
         # Intenta cargar las entradas existentes desde el archivo
         try:
             with open(self.filename, 'r') as file:
@@ -19,6 +21,8 @@ class UsersJsonFileManager:
     def create_entry(self, data):
         if "user" in data and "pass" in data:
             if(self.search_user(data['user']) == -1):
+                self.hash_object.update(data['pass'].encode('utf-8'))
+                data['pass'] = self.hash_object.hexdigest()
                 self.entries.append(data)
                 self.save_entries_to_file()
                 return 0
@@ -60,9 +64,6 @@ class UsersJsonFileManager:
             return -1
     
     def list_entries(self):
-        print("Users list")
-        for index, entry in enumerate(self.entries):
-            print(f"Entrada {index}:", entry)
         return self.entries
 
     def search_user(self, username):
