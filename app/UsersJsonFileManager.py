@@ -39,6 +39,8 @@ class UsersJsonFileManager:
     def update_entry(self, index, new_data):
         if 0 <= index < len(self.entries):
             if "user" in new_data and "pass" in new_data:
+                self.hash_object.update(new_data['pass'].encode('utf-8'))
+                new_data['pass'] = self.hash_object.hexdigest()
                 self.entries[index] = new_data
                 self.save_entries_to_file()
                 return self.entries[index]
