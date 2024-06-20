@@ -25,43 +25,36 @@ class UsersJsonFileManager:
                 data['pass'] = self.hash_object.hexdigest()
                 self.entries.append(data)
                 self.save_entries_to_file()
-                return 0
             else:
-                print("Error: El nombre de usuario ya existe")
-                return -2
+                raise TypeError("Error: the username already exists")
         else:
-            print("Recibido: " + str(data))
-            print("Error: El formato de los datos es incorrecto. Debe ser {'user': 'nombre_usuario', 'pass': 'contraseña'}.")
-            return -1
+            raise TypeError("Error: json format not allowed. Format allowed, received:"+str(data)+" allowed:{'user': 'user_name', 'pass': 'password'}")
 
     def read_entry(self, index):
         if 0 <= index < len(self.entries):
             return self.entries[index]
         else:
-            print("Error: Indice fuera de rango")
-            return null
+             raise TypeError("Error: List Index Out of Range")
 
     def update_entry(self, index, new_data):
         if 0 <= index < len(self.entries):
             if "user" in new_data and "pass" in new_data:
                 self.entries[index] = new_data
                 self.save_entries_to_file()
-                return 0
+                return self.entries[index]
             else:
-                print("Error: El formato de los datos es incorrecto.")
-                return -1
+                raise TypeError("Error: json format not allowed. Format allowed, received:"+str(new_data)+" allowed:{'user': 'user_name', 'pass': 'password'}")
         else:
-            print("Error: Indice fuera de rango.")
-            return -1
+            raise TypeError("Error: List Index Out of Range")
 
     def delete_entry(self, index):
         if 0 <= index < len(self.entries):
             del self.entries[index]
+            data_removed = self.entries[index]
             self.save_entries_to_file()
-            return 0
+            return data_removed
         else:
-            print("Error: Indice fuera de rango.")
-            return -1
+            raise TypeError("Error: List Index Out of Range")
     
     def list_entries(self):
         return self.entries
@@ -71,6 +64,3 @@ class UsersJsonFileManager:
             if diccionario['user'] == username:
                 return indice       
         return -1
-
-
-
