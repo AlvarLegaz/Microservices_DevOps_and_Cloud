@@ -35,7 +35,34 @@ def get_users_list():
 
 @api_application.route("/users", methods=['POST'])
 def set_user():
-    entry = request.get_json()
-    print(entry)
-    db_Json_File.create_entry(entry)
-    return (entry, http.client.OK, HEADERS)
+    try:
+        entry = request.get_json()
+        db_Json_File.create_entry(entry)
+        return (entry, http.client.OK, HEADERS)
+    except TypeError as e:
+        return (str(e), http.client.BAD_REQUEST, HEADERS)
+
+@api_application.route("/users/<id>", methods=['GET'])
+def get_user_by_id(id):
+    try:
+        entry_read = db_Json_File.read_entry(int(id))
+        return (entry_read, http.client.OK, HEADERS) 
+    except TypeError as e:
+        return (str(e), http.client.BAD_REQUEST, HEADERS)  
+
+@api_application.route("/users/<id>", methods=['PUT'])
+def update_user_by_id(id):
+    try:
+        entry = request.get_json()
+        entry_updated = db_Json_File.update_entry(int(id),entry)
+        return (entry_updated, http.client.OK, HEADERS) 
+    except TypeError as e:
+        return (str(e), http.client.BAD_REQUEST, HEADERS)  
+
+@api_application.route("/users/<id>", methods=['DELETE'])
+def delete_user_by_id(id):
+    try:
+        entry_deleted = db_Json_File.delete_entry(int(id))
+        return (entry_deleted, http.client.OK, HEADERS) 
+    except TypeError as e:
+        return (str(e), http.client.BAD_REQUEST, HEADERS) 
