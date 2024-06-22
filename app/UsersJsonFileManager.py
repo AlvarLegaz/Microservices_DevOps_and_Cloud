@@ -5,6 +5,7 @@ import hashlib
 class UsersJsonFileManager:
     def __init__(self, filename):
         self.filename = filename
+        print("Filename" + filename)
         self.hash_object = hashlib.sha256()
         # Intenta cargar las entradas existentes desde el archivo
         try:
@@ -25,6 +26,7 @@ class UsersJsonFileManager:
                 data['pass'] = self.hash_object.hexdigest()
                 self.entries.append(data)
                 self.save_entries_to_file()
+                return data
             else:
                 raise TypeError("Error: the username already exists")
         else:

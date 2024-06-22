@@ -37,7 +37,7 @@ def get_users_list():
 def set_user():
     try:
         entry = request.get_json()
-        db_Json_File.create_entry(entry)
+        entry = db_Json_File.create_entry(entry)
         return (entry, http.client.OK, HEADERS)
     except TypeError as e:
         return (str(e), http.client.BAD_REQUEST, HEADERS)
