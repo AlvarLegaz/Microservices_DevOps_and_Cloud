@@ -36,7 +36,7 @@ class UsersJsonFileManager:
         if 0 <= index < len(self.entries):
             return self.entries[index]
         else:
-             raise TypeError("Error: List Index Out of Range")
+            raise TypeError("Error: List Index Out of Range")
 
     def update_entry(self, index, new_data):
         if 0 <= index < len(self.entries):
