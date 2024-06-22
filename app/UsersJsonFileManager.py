@@ -26,7 +26,7 @@ class UsersJsonFileManager:
                 data['pass'] = self.hash_object.hexdigest()
                 self.entries.append(data)
                 self.save_entries_to_file()
-                return data
+                return self.entries[-1]
             else:
                 raise TypeError("Error: the username already exists")
         else:
