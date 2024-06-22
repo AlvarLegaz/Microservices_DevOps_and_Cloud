@@ -3,10 +3,11 @@ import pytest
 import unittest
 import json
 from dotenv import load_dotenv
+from pathlib import Path
 from app.UsersJsonFileManager import UsersJsonFileManager
 
 load_dotenv()
-file_name = os.getenv('USERS_FILE')
+file_name = os.getenv('USERS_FILE_TEST')
 
 @pytest.mark.unit
 class TestUsersJsonFileManager(unittest.TestCase):

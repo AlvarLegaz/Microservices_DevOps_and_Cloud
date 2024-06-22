@@ -1,6 +1,6 @@
-import app
 import json
 import hashlib
+
 
 class UsersJsonFileManager:
     def __init__(self, filename):
@@ -21,7 +21,7 @@ class UsersJsonFileManager:
 
     def create_entry(self, data):
         if "user" in data and "pass" in data:
-            if(self.search_user(data['user']) == -1):
+            if self.search_user(data['user']) == -1:
                 self.hash_object.update(data['pass'].encode('utf-8'))
                 data['pass'] = self.hash_object.hexdigest()
                 self.entries.append(data)
@@ -59,12 +59,12 @@ class UsersJsonFileManager:
             return data_removed
         else:
             raise TypeError("Error: List Index Out of Range")
-    
+
     def list_entries(self):
         return self.entries
 
     def search_user(self, username):
         for indice, diccionario in enumerate(self.entries):
             if diccionario['user'] == username:
-                return indice       
+                return indice
         return -1

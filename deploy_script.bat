@@ -7,6 +7,8 @@ python -m coverage report > coverage_report.txt
 pause()
 del .\users_list_test.json
 
+echo Security Tests
+python -m flake8 --exit-zero --format=pylint --max-line-length 80 app > flake8.out
 
 echo Deploy Stage ....
 dir
