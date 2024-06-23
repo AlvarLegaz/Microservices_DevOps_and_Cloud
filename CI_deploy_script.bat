@@ -10,8 +10,12 @@ del .\users_list_test.json
 echo Security Tests
 python -m flake8 --exit-zero --format=pylint --max-line-length 80 app > flake8.out
 
-echo Deploy Stage ....
+echo Deploy Stage for API/Rest Integration tests....
 dir
 set FLASK_APP=app\api.py
-python -m flask --debug run -h localhost -p 3000
+start python -m flask --debug run -h localhost -p 3000
+pause()
+
+echo Deploy Stage for API/Rest Integration tests....
+python -m pytest --junitxml=result-rest.xml tests/integration/api_rest_tests.py
 pause()
