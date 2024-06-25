@@ -5,7 +5,7 @@ import hashlib
 class UsersJsonFileManager:
     def __init__(self, filename):
         self.filename = filename
-        print("Filename" + filename)
+        print("Filename: " + filename)
         # Intenta cargar las entradas existentes desde el archivo
         try:
             with open(self.filename, 'r') as file:
