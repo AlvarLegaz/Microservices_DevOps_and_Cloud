@@ -1,12 +1,11 @@
-import hashlib
 import os
 import json
 from dotenv import load_dotenv
+from app import util
 from app.UsersJsonFileManager import UsersJsonFileManager
 
 load_dotenv()
 file_name = os.getenv('USERS_FILE')
-
 
 
 class UserAccountManager:
@@ -18,12 +17,12 @@ class UserAccountManager:
         index = self.db_Json_File.search_user(username)
         if index != 0:
             user_credentials = self.db_Json_File.read_entry(index)
-            hash_object = hashlib.sha256()
-            hash_object.update(password.encode('utf-8'))
-            password_sha_signature = hash_object.hexdigest()
+            password_sha_signature = util.get_sha256_signature(password)
+
             if user_credentials['pass'] == password_sha_signature:
                 return  user_credentials
-        raise ValueError("Error: Wrong user or password")
+            
+        raise ValueError("Wrong user or password")
 
 
     def signout(self, user):
