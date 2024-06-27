@@ -2,6 +2,7 @@ import os
 import json
 from dotenv import load_dotenv
 from app import util
+from app import security_toolbox
 from app.UsersJsonFileManager import UsersJsonFileManager
 
 load_dotenv()
@@ -17,7 +18,7 @@ class UserAccountManager:
         index = self.db_Json_File.search_user(username)
         if index != 0:
             user_credentials = self.db_Json_File.read_entry(index)
-            password_sha_signature = util.get_sha256_signature(password)
+            password_sha_signature = security_toolbox.get_sha256_signature(password)
 
             if user_credentials['pass'] == password_sha_signature:
                 return  user_credentials

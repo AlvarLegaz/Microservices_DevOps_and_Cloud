@@ -1,4 +1,4 @@
-from app import util
+from app import security_toolbox
 from app.UserAccountManager import UserAccountManager
 
 user_manager = UserAccountManager()
@@ -11,10 +11,11 @@ password_wrong='4178'
 print("Test Signin OK:")
 print(user_manager.signin(username, password_ok))
 
-token = util.get_jwt_token(username, 30)
-util.decode_jwt_token(token)
+token = security_toolbox.get_jwt_token(username, 30)
+print(f"Token generated with expiration time: {token}")
 
-print("Test Signin Fail:")
-print(user_manager.signin(username, password_wrong))
+credentials_decoded = security_toolbox.decode_jwt_token(token)
+print(f"Credential decoded from token: {credentials_decoded}")
+
 
 
