@@ -1,8 +1,6 @@
 import jwt
 import datetime
 import hashlib
-import os
-from dotenv import load_dotenv
 
 
 class security_toolbox:
@@ -22,7 +20,7 @@ class security_toolbox:
         'user_id': user,
         'exp': datetime.datetime.now() + datetime.timedelta(minutes=time_life_minutes) 
         }
-        encoded_token = jwt.encode(self, payload, self.secret_key, algorithm='HS256')
+        encoded_token = jwt.encode(payload, self.secret_key, algorithm='HS256')
         return encoded_token
 
 

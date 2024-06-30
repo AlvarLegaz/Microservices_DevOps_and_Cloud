@@ -1,13 +1,19 @@
 import pytest
 import unittest
 import hashlib
+import os
+from dotenv import load_dotenv
 from app.security_toolbox import security_toolbox
+
+
+load_dotenv()
+secret_key = os.getenv('SECRECT_JWT')
 
 
 @pytest.mark.unit
 class TestUsersJsonFileManager(unittest.TestCase):
     def setUp(self):
-        self.my_security_tools = security_toolbox()
+        self.my_security_tools = security_toolbox(secret_key)
         pass
     
     def test_get_sha256_signature_correct_result(self):

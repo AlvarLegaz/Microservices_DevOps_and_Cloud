@@ -13,7 +13,7 @@ password_wrong='4178'
 #print("Test Signin OK:")
 #print(user_manager.signin(username, password_ok))
 
-my_security_tools = security_toolbox()
+my_security_tools = security_toolbox(secret_key)
 
 token = my_security_tools.get_jwt_token(username, 30)
 print(f"Token generated with expiration time: {token}")
