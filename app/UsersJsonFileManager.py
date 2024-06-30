@@ -5,8 +5,7 @@ import hashlib
 class UsersJsonFileManager:
     def __init__(self, filename):
         self.filename = filename
-        print("Filename" + filename)
-        self.hash_object = hashlib.sha256()
+        print("Filename: " + filename)
         # Intenta cargar las entradas existentes desde el archivo
         try:
             with open(self.filename, 'r') as file:
@@ -22,8 +21,9 @@ class UsersJsonFileManager:
     def create_entry(self, data):
         if "user" in data and "pass" in data:
             if self.search_user(data['user']) == -1:
-                self.hash_object.update(data['pass'].encode('utf-8'))
-                data['pass'] = self.hash_object.hexdigest()
+                hash_object = hashlib.sha256()
+                hash_object.update(data['pass'].encode('utf-8'))
+                data['pass'] = hash_object.hexdigest()
                 self.entries.append(data)
                 self.save_entries_to_file()
                 return self.entries[-1]
@@ -41,8 +41,9 @@ class UsersJsonFileManager:
     def update_entry(self, index, new_data):
         if 0 <= index < len(self.entries):
             if "user" in new_data and "pass" in new_data:
-                self.hash_object.update(new_data['pass'].encode('utf-8'))
-                new_data['pass'] = self.hash_object.hexdigest()
+                hash_object = hashlib.sha256()
+                hash_object.update(new_data['pass'].encode('utf-8'))
+                new_data['pass'] = hash_object.hexdigest()
                 self.entries[index] = new_data
                 self.save_entries_to_file()
                 return self.entries[index]
