@@ -1,5 +1,17 @@
+import jwt
+import datetime
+import hashlib
 import os
+from dotenv import load_dotenv
 
-rutas = ['/ruta/a/mi/archivo.txt', '/ruta/a/mi/otro_archivo.txt']
-sub_ruta_comun = os.path.commonpath(rutas)
-print(f'Sub-ruta común: {sub_ruta_comun}')
+
+num_data = 98547
+string_data = '12345'
+
+hash_object = hashlib.sha256()
+hash_object.update(str(string_data).encode('utf-8'))
+signature_num_calculated = hash_object.hexdigest()  
+
+hash_object = hashlib.sha256()
+hash_object.update(string_data.encode('utf-8'))
+signature_str_calculated = hash_object.hexdigest()

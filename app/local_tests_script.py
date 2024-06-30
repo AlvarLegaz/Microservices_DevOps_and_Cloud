@@ -1,21 +1,26 @@
-from app import security_toolbox
-from app.UserAccountManager import UserAccountManager
+import os
+from dotenv import load_dotenv
+from app.security_toolbox import security_toolbox
 
-user_manager = UserAccountManager()
+load_dotenv()
+secret_key = os.getenv('SECRECT_JWT')
 
 username = 'pedro7'
 password_ok = '1234'
 password_wrong='4178'
 
 # user_manager.signup(username, password)
-print("Test Signin OK:")
-print(user_manager.signin(username, password_ok))
+#print("Test Signin OK:")
+#print(user_manager.signin(username, password_ok))
 
-token = security_toolbox.get_jwt_token(username, 30)
+my_security_tools = security_toolbox()
+
+token = my_security_tools.get_jwt_token(username, 30)
 print(f"Token generated with expiration time: {token}")
 
-credentials_decoded = security_toolbox.decode_jwt_token(token)
+credentials_decoded = my_security_tools.decode_jwt_token(token)
 print(f"Credential decoded from token: {credentials_decoded}")
+
 
 
 
