@@ -1,8 +1,8 @@
 from pymongo import MongoClient
 
 class mongodb_handler:
-    def __init__(self, db_name, collection_name):
-        self.client = MongoClient('localhost', 27017)
+    def __init__(self, db_url, db_name, collection_name):
+        self.client = MongoClient(db_url)
         self.db = self.client[db_name]
         self.collection = self.db[collection_name]
 
@@ -21,29 +21,31 @@ class mongodb_handler:
     def list(self):
         return self.collection.find()
 
-# Uso de la clase
-db_name = 'mi_base_de_datos'
-collection_name = 'mi_coleccion'
-crudl = MongoCRUDL(db_name, collection_name)
+if __name__ == '__main__':
+    # Uso de la clase
+    db_url = "mongodb://localhost:27017"
+    db_name = 'prueba1'
+    collection_name = 'mi_coleccion'
+    crudl = mongodb_handler(db_url, db_name, collection_name)
 
-# Crear un nuevo documento
-new_document = {'nombre': 'Juan', 'edad': 30}
-print(crudl.create(new_document))
+    # Crear un nuevo documento
+    new_document = {'nombre': 'Juan', 'edad': 30}
+    print(crudl.create(new_document))
 
-# Leer documentos
-query = {'nombre': 'Juan'}
-documents = crudl.read(query)
-for doc in documents:
-    print(doc)
+    # Leer documentos
+    query = {'nombre': 'Juan'}
+    documents = crudl.read(query)
+    for doc in documents:
+        print(doc)
 
-# Actualizar un documento
-new_values = {'edad': 31}
-crudl.update(query, new_values)
+    # Actualizar un documento
+    new_values = {'edad': 31}
+    crudl.update(query, new_values)
 
-# Eliminar un documento
-crudl.delete(query)
+    # Eliminar un documento
+    crudl.delete(query)
 
-# Listar todos los documentos
-all_documents = crudl.list()
-for doc in all_documents:
-    print(doc)
+    # Listar todos los documentos
+    all_documents = crudl.list()
+    for doc in all_documents:
+        print(doc)
