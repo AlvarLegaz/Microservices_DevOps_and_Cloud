@@ -1,5 +1,5 @@
-# Installing MongoDB on Windows 10 ## 
-1. Download and Installation
+# Installing MongoDB on Windows 10 
+## 1. Download and Installation
 - Go to the official MongoDB website and download the **Community Server** version for Windows.
 - Run the downloaded installer and follow the installation wizard. Make sure to select the complete installation option and not install MongoDB as a service.
 - You can also install **MongoDB Compass**, a graphical tool for managing MongoDB.
