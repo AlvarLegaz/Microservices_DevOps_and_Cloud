@@ -1,18 +1,18 @@
 # Terraform
 
-**Terraform** es una herramienta de Infraestructura como Código (IaC) que permite construir, cambiar y versionar la infraestructura de manera segura y eficiente. Puede manejar componentes de bajo nivel como instancias de computación, almacenamiento y redes, así como componentes de alto nivel como entradas DNS y características de SaaS.
+**Terraform** is an Infrastructure as Code (IaC) tool that allows you to build, change, and version infrastructure safely and efficiently. It can handle low-level components such as compute instances, storage, and networks, as well as high-level components such as DNS entries and SaaS features.
 
-## Instalación en Ubuntu
+## Installation on Ubuntu
 
-Para instalar Terraform en Ubuntu, primero actualiza el sistema e instala los paquetes necesarios. Luego, añade la clave GPG de HashiCorp e instala el repositorio oficial de HashiCorp para Linux. Finalmente, instala la interfaz de línea de comandos de Terraform.
+To install Terraform on Ubuntu, first update the system and install the necessary packages. Then, add the HashiCorp GPG key and install the official HashiCorp repository for Linux. Finally, install the Terraform command line interface.
 
-## Instalación en PowerShell de Linux
+## Installation on Linux PowerShell
 
-Para instalar Terraform en PowerShell de Linux, sigue los mismos pasos que para Ubuntu. Asegúrate de que el binario de Terraform esté disponible en tu PATH.
+To install Terraform on Linux PowerShell, follow the same steps as for Ubuntu. Make sure the Terraform binary is available in your PATH.
 
-## Comandos de Terraform
+## Terraform Commands
 
-- `terraform init`: Este comando inicializa un directorio de trabajo que contiene archivos de configuración de Terraform. Es el primer comando que se debe ejecutar después de escribir una nueva configuración de Terraform o clonar una existente.
-- `terraform plan`: Crea un plan de ejecución que te permite previsualizar los cambios que Terraform planea hacer en tu infraestructura.
-- `terraform apply`: Ejecuta las acciones propuestas en un plan de Terraform. Crea, actualiza o destruye recursos para que coincidan con el estado descrito en tu archivo de configuración.
-- `terraform destroy`: Este comando destruye todos los objetos remotos administrados por una configuración de Terraform. Es útil para limpiar toda la infraestructura temporal una vez que hayas terminado con tu trabajo.
+- `terraform init`: This command initializes a working directory containing Terraform configuration files. It is the first command that should be run after writing a new Terraform configuration or cloning an existing one.
+- `terraform plan`: Creates an execution plan that allows you to preview the changes that Terraform plans to make to your infrastructure.
+- `terraform apply`: Executes the actions proposed in a Terraform plan. Creates, updates, or destroys resources to match the state described in your configuration file.
+- `terraform destroy`: This command destroys all remote objects managed by a Terraform configuration. It is useful for cleaning up all temporary infrastructure once you have finished your work.
