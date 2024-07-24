@@ -1,9 +1,9 @@
 import os
 import json
 from dotenv import load_dotenv
-from app.security_toolbox import security_toolbox
+from app.tools.security_toolbox import security_toolbox
 from app.UsersJsonFileManager import UsersJsonFileManager
-from app.mongodb_handler import mongodb_handler
+from app.database_connector.mongodb_handler import mongodb_handler
 
 load_dotenv()
 file_name = os.getenv('USERS_FILE')

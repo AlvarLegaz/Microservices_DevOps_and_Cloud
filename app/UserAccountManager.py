@@ -1,7 +1,7 @@
 import os
 import json
 from dotenv import load_dotenv
-from app import security_toolbox
+from app.tools import security_toolbox
 from app.UsersJsonFileManager import UsersJsonFileManager
 
 load_dotenv()

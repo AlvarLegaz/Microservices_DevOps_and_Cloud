@@ -20,6 +20,9 @@ class mongodb_handler:
 
     def list(self):
         return self.collection.find()
+    
+    def find_one(self, query):
+        return self.collection.find_one(query)
 
 if __name__ == '__main__':
     # Uso de la clase
