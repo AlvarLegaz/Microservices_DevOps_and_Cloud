@@ -1,7 +1,7 @@
 import http.client
 from flask import Flask
 from flask import request
-from app.services.login_service import login_service 
+from app.services.login.login_service import login_service 
 
 api_application = Flask(__name__)
 HEADERS = {"Content-Type": "text/plain", "Access-Control-Allow-Origin": "*"}
@@ -17,6 +17,6 @@ def login_by_user():
     try:
         entry = request.get_json()
         response = my_login_srv.login(entry['user'], entry['password'])
-        return (response, http.client.OK, HEADERS)
+        return ({'access_token':response}, http.client.OK, HEADERS)
     except TypeError as e:
         return (str(e), http.client.BAD_REQUEST, HEADERS)

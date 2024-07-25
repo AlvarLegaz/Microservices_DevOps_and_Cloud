@@ -26,8 +26,6 @@ class login_service:
         
 
     def login(self, username, password):
-        print(DB_URI)
-        print(DB_NAME)
         password_sha_signature = self.my_security_toolbox.get_sha256_signature(password)
         response = self.my_db.find_one({'user': username, 'pass': password_sha_signature})
         if response:
