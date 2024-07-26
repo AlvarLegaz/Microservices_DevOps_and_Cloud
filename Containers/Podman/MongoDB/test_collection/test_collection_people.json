@@ -1,0 +1,38 @@
+[
+    {
+        "nombre": "Juan",
+        "apellido": "Pérez",
+        "edad": 30,
+        "dirección": {
+            "calle": "Calle Falsa",
+            "ciudad": "Cartagena",
+            "región": "Región de Murcia",
+            "país": "España"
+        },
+        "hobbies": ["fútbol", "lectura", "viajar"]
+    },
+    {
+        "nombre": "Ana",
+        "apellido": "Gómez",
+        "edad": 25,
+        "dirección": {
+            "calle": "Avenida Verdadera",
+            "ciudad": "Murcia",
+            "región": "Región de Murcia",
+            "país": "España"
+        },
+        "hobbies": ["cine", "música", "cocina"]
+    },
+    {
+        "nombre": "Carlos",
+        "apellido": "López",
+        "edad": 35,
+        "dirección": {
+            "calle": "Plaza Imaginaria",
+            "ciudad": "Cartagena",
+            "región": "Región de Murcia",
+            "país": "España"
+        },
+        "hobbies": ["natación", "fotografía", "viajar"]
+    }
+]

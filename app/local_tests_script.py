@@ -1,6 +1,6 @@
 import os
 from dotenv import load_dotenv
-from app.security_toolbox import security_toolbox
+from app.tools.security_toolbox import security_toolbox
 
 load_dotenv()
 secret_key = os.getenv('SECRECT_JWT')
