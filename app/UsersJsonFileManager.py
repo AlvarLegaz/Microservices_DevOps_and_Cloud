@@ -1,75 +1,71 @@
-import os
 import json
-from dotenv import load_dotenv
-from app.tools.security_toolbox import security_toolbox
-from app.UsersJsonFileManager import UsersJsonFileManager
-from app.database_connector.mongodb_handler import mongodb_handler
-
-load_dotenv()
-file_name = os.getenv('USERS_FILE')
-db_url = os.getenv('DB_URL')
-users_db = os.getenv('DB_NAME')
-users_collection = os.getenv('COLLECTION_NAME')
-secrect = os.getenv('SECRECT_JWT')
+import hashlib
 
 
-class UserAccountManager:
+class UsersJsonFileManager:
+    def __init__(self, filename):
+        self.filename = filename
+        print("Filename: " + filename)
+        # Intenta cargar las entradas existentes desde el archivo
+        try:
+            with open(self.filename, 'r') as file:
+                self.entries = json.load(file)
+        except (FileNotFoundError, json.JSONDecodeError):
+            self.entries = []
 
-    def __init__(self, source):
-        self.source = source
-        self.security_tools = security_toolbox(secrect)
-        if(self.source == 'json_file'):
-            self.db_Json_File = UsersJsonFileManager(file_name)
-        elif(self.source == 'mongoDB'):  
-            self.users_db_handler = mongodb_handler(db_url, users_db, users_collection)  
+    def save_entries_to_file(self):
+        with open(self.filename, 'w') as file:
+            json.dump(self.entries, file, indent=4)
+        return 0
+
+    def create_entry(self, data):
+        if "user" in data and "pass" in data:
+            if self.search_user(data['user']) == -1:
+                hash_object = hashlib.sha256()
+                hash_object.update(data['pass'].encode('utf-8'))
+                data['pass'] = hash_object.hexdigest()
+                self.entries.append(data)
+                self.save_entries_to_file()
+                return self.entries[-1]
+            else:
+                raise TypeError("Error: the username already exists")
         else:
-            raise ValueError("Unknown source!")
-            
+            raise TypeError("Error: json format not allowed. Format allowed, received:"+str(data)+" allowed:{'user': 'user_name', 'pass': 'password'}")
 
-    def signin(self, username, password):
-        if(self.source == 'json_file'):
-            index = self.db_Json_File.search_user(username)
-            if index != 0:
-                user_credentials = self.db_Json_File.read_entry(index)
-                password_sha_signature = self.security_tools.get_sha256_signature(password)
+    def read_entry(self, index):
+        if 0 <= index < len(self.entries):
+            return self.entries[index]
+        else:
+            raise TypeError("Error: List Index Out of Range")
 
-                if user_credentials['pass'] == password_sha_signature:
-                    return  user_credentials
-            raise ValueError("Wrong user or password")
-        
-        elif(self.source == 'mongoDB'):
-            query = {"user": username}
-            user_credentials = self.users_db_handler.read(query)
-            
-            password_sha_signature = self.security_tools.get_sha256_signature(password)
-            try:
-                if user_credentials[0]['pass'] == password_sha_signature:
-                    print(user_credentials[0])
-                    return  user_credentials[0]
-                else:
-                    raise ValueError("Wrong user or password") 
-            except Exception as e:
-                    raise ValueError("Wrong user or password") 
-            
+    def update_entry(self, index, new_data):
+        if 0 <= index < len(self.entries):
+            if "user" in new_data and "pass" in new_data:
+                hash_object = hashlib.sha256()
+                hash_object.update(new_data['pass'].encode('utf-8'))
+                new_data['pass'] = hash_object.hexdigest()
+                self.entries[index] = new_data
+                self.save_entries_to_file()
+                return self.entries[index]
+            else:
+                raise TypeError("Error: json format not allowed. Format allowed, received:"+str(new_data)+" allowed:{'user': 'user_name', 'pass': 'password'}")
+        else:
+            raise TypeError("Error: List Index Out of Range")
 
+    def delete_entry(self, index):
+        if 0 <= index < len(self.entries):
+            del self.entries[index]
+            data_removed = self.entries[index]
+            self.save_entries_to_file()
+            return data_removed
+        else:
+            raise TypeError("Error: List Index Out of Range")
 
-    def signout(self, user):
-        # Implementa el cierre de sesión aquí
-        pass
+    def list_entries(self):
+        return self.entries
 
-    def signup(self, user, password):
-        user_credentials = json.loads('{"user": "' + user + '", "pass": "' + password + '"}')
-        print(user_credentials)
-        self.db_Json_File.create_entry(user_credentials)
-        pass
-
-    def update_user(self, user, new_data):
-        # Implementa la actualización del usuario aquí
-        pass
-
-# Test Class
-if __name__ == '__main__':
-    my_UserAccountManager = UserAccountManager('mongoDB')
-    my_UserAccountManager.signin('pedro2','1234')
-    my_UserAccountManager.signin('pedro2','124')
-    my_UserAccountManager.signin('pedro552','1234')
+    def search_user(self, username):
+        for indice, diccionario in enumerate(self.entries):
+            if diccionario['user'] == username:
+                return indice
+        return -1
