@@ -1,9 +1,0 @@
-Name                          Stmts   Miss Branch BrPart  Cover
----------------------------------------------------------------
-app\UserAccountManager.py        27     27      4      0     0%
-app\UsersJsonFileManager.py      55     20     20      1    64%
-app\local_tests_script.py        13     13      0      0     0%
-app\security_toolbox.py          22      4      2      0    75%
-app\util.py                       0      0      0      0   100%
----------------------------------------------------------------
-TOTAL                           117     64     26      1    46%

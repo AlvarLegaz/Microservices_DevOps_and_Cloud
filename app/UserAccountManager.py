@@ -1,7 +1,11 @@
 import os
 import json
 from dotenv import load_dotenv
+<<<<<<< HEAD
 from app.security_toolbox import security_toolbox
+=======
+from app.tools import security_toolbox
+>>>>>>> develop
 from app.UsersJsonFileManager import UsersJsonFileManager
 from app.mongodb_handler import mongodb_handler
 
