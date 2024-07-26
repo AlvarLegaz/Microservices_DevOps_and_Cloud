@@ -28,10 +28,14 @@
 	```bash
 	podman ps
 	```
+ 	Connect to the container bash or sh.
+	```
+ 	podman exec -i [contaniner_id] bin/bash
+ 	```
 
-6. **Access MongoDB Using MongoDB Compass or an Alternative Interface**
+7. **Access MongoDB Using MongoDB Compass or an Alternative Interface**
 
-7. **Perform a Simple Test of the Database**
+8. **Perform a Simple Test of the Database**
 	```bash
 	echo 'db.runCommand({ connectionStatus: 1 })' | podman exec -i [container_id] mongo
 	```
@@ -39,19 +43,19 @@
 
 	Please replace `[container_id]` with the actual ID of your container. You can find the ID by running `podman ps`.
 
-8. **Stop the Container**
+9. **Stop the Container**
 	```bash
 	podman stop [container_id]
 	```
 	Replace `[container_id]` with the ID of your container.
 
-9. **Start the Container**
+10. **Start the Container**
 	```bash
 	podman start [container_id]
 	```
 	Replace `[container_id]` with the ID of your container.
 
-10. **Destroy the Container**
+11. **Destroy the Container**
 	```bash
 	podman rm [container_id]
 	```
