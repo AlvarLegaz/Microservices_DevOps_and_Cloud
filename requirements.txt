@@ -1,0 +1,4 @@
+Flask
+python-dotenv
+PyJWT==2.3.0
+pymongo==4.8.0
