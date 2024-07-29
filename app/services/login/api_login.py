@@ -10,7 +10,7 @@ my_login_srv = login_service()
 
 @api_application.route("/")
 def hello():
-    return ("Hello from login api.", http.client.OK, HEADERS)
+    return ("Hello from login api. version 1.0.0", http.client.OK, HEADERS)
 
 @api_application.route("/login", methods=['PUT'])
 def login_by_user():
