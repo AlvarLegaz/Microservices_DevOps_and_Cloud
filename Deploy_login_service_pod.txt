@@ -1,0 +1,9 @@
+#Create pod and map services ports
+podman pod create --name login_service -p 3000:3000 -p 27017:27017
+
+#Create container in pod using image container
+podman run -d --pod login_service --name login_flask_server localhost/login_service:latest
+podman run -d --pod login_service --name user_database docker.io/.../mongodb:latest
+
+#Check deploy
+podman ps --pod

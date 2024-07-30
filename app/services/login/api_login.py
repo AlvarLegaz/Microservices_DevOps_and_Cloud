@@ -10,9 +10,9 @@ my_login_srv = login_service()
 
 @api_application.route("/")
 def hello():
-    return ("Hello from login api.", http.client.OK, HEADERS)
+    return ("Hello from login api. version 1.0.1", http.client.OK, HEADERS)
 
-@api_application.route("/login", methods=['PUT'])
+@api_application.route("/login", methods=['POST'])
 def login_by_user():
     try:
         entry = request.get_json()
