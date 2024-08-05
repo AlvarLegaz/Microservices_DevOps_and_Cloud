@@ -18,7 +18,7 @@ class mongodb_handler:
     def delete(self, query):
         return self.collection.delete_one(query)
 
-    def list(self):
+    def list(self, query):
         return self.collection.find()
     
     def find_one(self, query):
