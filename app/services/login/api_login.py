@@ -1,9 +1,12 @@
 import http.client
 from flask import Flask
 from flask import request
+from flask_cors import CORS
 from app.services.login.login_service import login_service 
 
 api_application = Flask(__name__)
+CORS(api_application)
+
 HEADERS = {"Content-Type": "text/plain", "Access-Control-Allow-Origin": "*"}
 
 my_login_srv = login_service()
@@ -11,6 +14,7 @@ my_login_srv = login_service()
 @api_application.route("/")
 def hello():
     return ("Hello from login api. version 1.0.1", http.client.OK, HEADERS)
+
 
 @api_application.route("/login", methods=['POST'])
 def login_by_user():
