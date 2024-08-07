@@ -18,7 +18,7 @@ db_name = 'my_users_db'
 collection_name = 'users'
 
 
-class login_service:
+class LoginService:
 
     def __init__(self):
         self.my_db = mongodb_handler(DB_URI, DB_NAME, COLLECTION_NAME)
@@ -31,5 +31,5 @@ class login_service:
         if response:
             return self.my_security_toolbox.get_jwt_token(str(username), JWT_TOKEN_LIFETIME_MIN)
         else:
-            return "Error en el inicio de sesión"
+            return None
         
