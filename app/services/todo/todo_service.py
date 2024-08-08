@@ -1,7 +1,11 @@
 import os
 import time
+import json
+from datetime import datetime
+from bson import encode, decode
 from bson.json_util import dumps
 from bson.objectid import ObjectId
+from jsonschema import validate, ValidationError
 from dotenv import load_dotenv
 from app.tools.security_toolbox import security_toolbox
 from app.database_handler.mongodb_handler import mongodb_handler
@@ -12,28 +16,36 @@ DB_URI = os.getenv('DB_URI')
 DB_NAME = os.getenv('TODO_DB_NAME')
 COLLECTION_NAME = os.getenv('TODO_COLLECTION_NAME')
 
-SECRECT_JWT = os.getenv('SECRECT_JWT')
-JWT_TOKEN_LIFETIME_MIN = 10
 
 class todo_service:
 
     def __init__(self):
         self.my_db = mongodb_handler(DB_URI, DB_NAME, COLLECTION_NAME)
-        self.my_security_toolbox = security_toolbox(SECRECT_JWT)
+        self.task_esquema = {
+            "type": "object",
+            "properties": {
+                "title": {"type": "string"},
+                "description": {"type": "string"},
+                "doing": {"type": "boolean"},  
+                "done": {"type": "boolean"}, 
+                "createdAt": {"type": "string"},
+                "updatedAt": {"type": "string"}
+            },
+            "required": ["title", "description", "doing", "done", "createdAt", "updatedAt"]
+        }
         
 
-    def create_task(self, user, task_text):
-        timestamp = str(time.time())
-        item = {
-            'user': user,
-            'task_text': task_text,
-            'doing': 'false',
-            'done': 'false',
-            'createdAt': timestamp,
-            'updatedAt': timestamp
-        }
-        self.my_db.create(item, default=str, indent=4)
-        return dumps(item)
+    def create_task(self, user, task_json):
+        timestamp = time.time() 
+        date = datetime.fromtimestamp(timestamp)
+        formated_date = date.strftime('%Y-%m-%d %H:%M')
+        self.validate_task_json(task_json)
+        task_json["createdAt"] = formated_date
+        task_json["updatedAt"] = formated_date
+        # Add user to the db item. item is task and user
+        task_json["user"] = user
+        self.my_db.create(task_json)
+        return dumps(task_json)
     
     
     def read_task(self, user, id_task):
@@ -41,8 +53,14 @@ class todo_service:
         return dumps(task)
     
     
-    def update_task(self, user, id_task, task_text):
-        return 1
+    def update_task(self, user, id_task, task_json):
+        timestamp = time.time() 
+        date = datetime.fromtimestamp(timestamp)
+        formated_date = date.strftime('%Y-%m-%d %H:%M')
+        self.validate_task_json(task_json)
+        task_json["updatedAt"] = formated_date
+        self.my_db.update({'user': user, "_id": ObjectId(id_task)}, task_json)
+        return dumps(task_json)
     
     
     def delete_task(self, user, id_task):
@@ -55,5 +73,20 @@ class todo_service:
         tasks_list = list(tasks)
         tasks_list_json = dumps(tasks_list, default=str, indent=4)
         return tasks_list_json
+        
+    def validate_task_json(self, json_data):
+        try:
+            # Si json_data es una cadena, conviértela a diccionario
+            if isinstance(json_data, str):
+                data = json.loads(json_data)
+            else:
+                data = json_data
+            
+            # Validar el diccionario contra el esquema
+            validate(instance=data, schema=self.task_esquema)
+            return True, "El JSON es válido."
+        except (json.JSONDecodeError, ValidationError) as e:
+            raise TypeError(f"Task json not valid: {e.message}")
+        
         
         

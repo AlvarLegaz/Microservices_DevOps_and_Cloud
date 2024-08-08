@@ -10,13 +10,12 @@ my_todo_srv = todo_service()
 
 @api_application.route("/")
 def hello():
-    return ("Hello from TO-DO api. version 1.0.0", http.client.OK, HEADERS)
+    return ("Hello from TO-DO api. version 1.0.1", http.client.OK, HEADERS)
 
 
 @api_application.route("/todo/<user>", methods=['GET'])
 def get_tasks_list(user):
     try:
-        entry = request.get_json()
         response = my_todo_srv.list_task(user)
         return (response, http.client.OK, HEADERS)
     except TypeError as e:
@@ -26,8 +25,8 @@ def get_tasks_list(user):
 @api_application.route("/todo/<user>", methods=['POST'])
 def set_task(user):
     try:
-        task_text = request.get_json()
-        response = my_todo_srv.create_task(user, task_text)
+        task = request.get_json()
+        response = my_todo_srv.create_task(user, task)
         return (response, http.client.OK, HEADERS)
     except TypeError as e:
         return (str(e), http.client.BAD_REQUEST, HEADERS)
@@ -40,7 +39,16 @@ def read_task(user, task_id):
         return (response, http.client.OK, HEADERS)
     except TypeError as e:
         return (str(e), http.client.BAD_REQUEST, HEADERS)        
-        
+
+@api_application.route("/todo/<user>/<task_id>", methods=['PUT'])
+def update_task(user, task_id):
+    try:
+        task_text = request.get_json()
+        response = my_todo_srv.update_task(user, task_id, task_text)
+        return (response, http.client.OK, HEADERS)
+    except TypeError as e:
+        return (str(e), http.client.BAD_REQUEST, HEADERS)
+          
         
 @api_application.route("/todo/<user>/<task_id>", methods=['DELETE'])
 def delete_task(user, task_id):
