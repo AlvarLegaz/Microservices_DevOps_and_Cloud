@@ -1,0 +1,5 @@
+Construye la imagen:
+Navega al directorio donde tienes tu Dockerfile y ejecuta el siguiente comando:
+podman build -t mi_imagen .
+
+Aquí, -t mi_imagen asigna un nombre a tu imagen, y el . indica que el Dockerfile está en el directorio actual.
