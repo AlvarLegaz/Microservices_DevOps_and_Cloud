@@ -3,7 +3,7 @@ from flask import Flask, request, render_template
 from app.microservices.todo.todo_service import TodoService 
 
 api_application = Flask(__name__)
-HEADERS = {"Content-Type": "text/plain", "Access-Control-Allow-Origin": "*"}
+HEADERS = {"Content-Type": "application/json"}
 
 my_todo_srv = TodoService()
 

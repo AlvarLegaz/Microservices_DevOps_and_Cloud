@@ -48,7 +48,6 @@ class TodoService:
     
     def update_task(self, user, id_task, task_json):
         self.validate_task_json(task_json)
-        task_json["updatedAt"] = formated_date
         self.my_db.update({'user': user, "_id": ObjectId(id_task)}, task_json)
         return dumps(task_json)
     
