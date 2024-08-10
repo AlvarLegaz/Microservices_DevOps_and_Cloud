@@ -1,16 +1,15 @@
 import http.client
-from flask import Flask
-from flask import request
-from app.services.todo.todo_service import todo_service 
+from flask import Flask, request, render_template
+from app.microservices.todo.todo_service import TodoService 
 
 api_application = Flask(__name__)
 HEADERS = {"Content-Type": "text/plain", "Access-Control-Allow-Origin": "*"}
 
-my_todo_srv = todo_service()
+my_todo_srv = TodoService()
 
 @api_application.route("/")
 def hello():
-    return ("Hello from TO-DO api. version 1.0.1", http.client.OK, HEADERS)
+     return render_template('hello.html')
 
 
 @api_application.route("/todo/<user>", methods=['GET'])

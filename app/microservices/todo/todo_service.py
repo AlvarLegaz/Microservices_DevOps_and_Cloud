@@ -1,7 +1,5 @@
 import os
-import time
 import json
-from datetime import datetime
 from bson import encode, decode
 from bson.json_util import dumps
 from bson.objectid import ObjectId
@@ -17,7 +15,7 @@ DB_NAME = os.getenv('TODO_DB_NAME')
 COLLECTION_NAME = os.getenv('TODO_COLLECTION_NAME')
 
 
-class todo_service:
+class TodoService:
 
     def __init__(self):
         self.my_db = mongodb_handler(DB_URI, DB_NAME, COLLECTION_NAME)
@@ -36,12 +34,7 @@ class todo_service:
         
 
     def create_task(self, user, task_json):
-        timestamp = time.time() 
-        date = datetime.fromtimestamp(timestamp)
-        formated_date = date.strftime('%Y-%m-%d %H:%M')
         self.validate_task_json(task_json)
-        task_json["createdAt"] = formated_date
-        task_json["updatedAt"] = formated_date
         # Add user to the db item. item is task and user
         task_json["user"] = user
         self.my_db.create(task_json)
@@ -54,9 +47,6 @@ class todo_service:
     
     
     def update_task(self, user, id_task, task_json):
-        timestamp = time.time() 
-        date = datetime.fromtimestamp(timestamp)
-        formated_date = date.strftime('%Y-%m-%d %H:%M')
         self.validate_task_json(task_json)
         task_json["updatedAt"] = formated_date
         self.my_db.update({'user': user, "_id": ObjectId(id_task)}, task_json)
