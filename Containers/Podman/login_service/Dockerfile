@@ -18,7 +18,7 @@ COPY ./app ./app
 ENV PYTHONPATH=.
 
 # Establecer la variable de entorno FLASK_APP
-ENV FLASK_APP=./app/services/login/api_login.py
+ENV FLASK_APP=./app/microservices/login/api_login.py
 
 # Exponer el puerto en el que se ejecutará Flask
 EXPOSE 3000
