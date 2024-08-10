@@ -1,5 +1,7 @@
 Flask
-flask_cors
 python-dotenv
+jsonschema
+bson
+flask_cors
 PyJWT==2.3.0
 pymongo==4.8.0

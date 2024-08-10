@@ -1,11 +1,9 @@
 import os
 import json
-from bson import encode, decode
 from bson.json_util import dumps
 from bson.objectid import ObjectId
 from jsonschema import validate, ValidationError
 from dotenv import load_dotenv
-from app.tools.security_toolbox import security_toolbox
 from app.database_handler.mongodb_handler import mongodb_handler
 
 load_dotenv('app/.env')

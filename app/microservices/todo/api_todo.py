@@ -1,8 +1,11 @@
 import http.client
 from flask import Flask, request, render_template
+from flask_cors import CORS
 from app.microservices.todo.todo_service import TodoService 
 
 api_application = Flask(__name__)
+CORS(api_application)
+
 HEADERS = {"Content-Type": "application/json"}
 
 my_todo_srv = TodoService()
