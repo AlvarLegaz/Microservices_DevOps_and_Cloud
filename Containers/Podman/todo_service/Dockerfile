@@ -14,7 +14,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 # Copiar el resto del código del proyecto
 COPY ./app/.env ./app
-COPY ./app/microservices/todo/ ./app/microservices/todo/
+COPY ./app/microservices/todo_service/ ./app/microservices/todo_service/
 
 ENV PYTHONPATH=.
 
