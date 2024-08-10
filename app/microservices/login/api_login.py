@@ -2,7 +2,7 @@ import http.client
 from flask import Flask
 from flask import request
 from flask_cors import CORS
-from app.services.login.login_service import LoginService 
+from app.microservices.login.login_service import LoginService 
 
 api_application = Flask(__name__)
 CORS(api_application)
