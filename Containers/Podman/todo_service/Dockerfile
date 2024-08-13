@@ -1,5 +1,5 @@
 # Usar una imagen base de Python
-FROM python:3.9-alpine
+FROM python:3.11
 
 # Establecer un directorio de trabajo
 WORKDIR /code
