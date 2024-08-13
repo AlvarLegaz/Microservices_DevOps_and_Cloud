@@ -1,0 +1,34 @@
+body {
+    background-color: #343a40;
+    color: #ffffff;
+}
+
+.login-container {
+    margin-top: 100px;
+}
+
+.login-form {
+    background-color: #495057;
+    padding: 30px;
+    border-radius: 10px;
+}
+
+.form-control {
+    background-color: #6c757d;
+    border: none;
+    color: #ffffff;
+}
+
+.form-control:focus {
+    background-color: #6c757d;
+    color: #ffffff;
+}
+
+.btn-primary {
+    background-color: #007bff;
+    border: none;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+}
