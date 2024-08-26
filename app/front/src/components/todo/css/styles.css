@@ -27,8 +27,9 @@ body {
     background-color: #f9f9f9;
     padding: 10px;
     border: 1px solid #ddd;
-    border-radius: 5px;
+    border-radius: 25px;
 }
+
 @media (max-width: 768px) {
     .column {
         width: 100%;
@@ -40,11 +41,28 @@ body {
     font-size: 18px;
     margin-bottom: 10px;
 }
+
+#column_toDo {
+    background-color: lightgray;
+}
+
+#column_doing {
+    background-color: lightgray;
+}
+
+#column_postpose {
+    background-color: lightgray;
+}
+
+#column_done {
+    background-color: lightgray;
+}
+
 .card {
-    background-color: #e0e0e0;
+    background-color: #ffffff;
     padding: 5px;
     margin-bottom: 5px;
-    border-radius: 3px;
+    border-radius: 15px;
 }
 
 .btn-primary {
