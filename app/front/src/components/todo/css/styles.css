@@ -1,5 +1,5 @@
 body {
-    background-color: #343a40;
+    background-color: #61bd4f;
     justify-content: center;
     align-items: center;
     height: 100vh;
@@ -63,6 +63,12 @@ body {
     padding: 5px;
     margin-bottom: 5px;
     border-radius: 15px;
+    border: 2px solid transparent;
+    transition: border-color 0.3s ease;
+}
+
+.card:hover {
+  border-color: #4682B4; /*Cambia el color a azul celeste cuando el cursor está sobre el div */
 }
 
 .btn-primary {
