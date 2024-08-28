@@ -74,8 +74,8 @@ function displayTasks(tasks) {
                 <p><strong>Done:</strong> ${task.done}</p>
                 <p><strong>Created At:</strong> ${task.createdAt}</p>
                 <p><strong>Updated At:</strong> ${task.updatedAt}</p>
-				<button class="edit-btn">Editar</button>
-            <button class="delete-btn">Eliminar</button>
+				<button class="btn_edit_task">Edit</button>
+                <button class="btn_rmv_task">Delete</button>
             </div>
         `;
     });

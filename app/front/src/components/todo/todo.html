@@ -5,7 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>To-do list</title>
     <!-- Custom CSS -->
-    <link href="css/styles.css" rel="stylesheet">
+    <link href="css/grid_layout_styles.css" rel="stylesheet">
+    <link href="css/elements_styles.css" rel="stylesheet">
+    <link href="css/buttons_styles.css" rel="stylesheet">
 	<!-- Custom JS -->
 	<script defer src="scripts/task_handler.js"></script>
 </head>
@@ -28,22 +30,30 @@
             <div class="column" id= "column_toDo">
                 <h3>To Do</h3>
 		        <div id="toDo"></div>
+                <button class="btn_add_task">Add task</button>
             </div>
 				
             <div class="column" id= "column_doing">
                 <h3>Doing</h3>
                 <div id="doing"></div>
+                <button class="btn_add_task">Add task</button>
             </div>
 				
             <div class="column" id= "column_postpose">
                 <h3>Blocked</h3>
                 <div id="postpose"></div>
+                <button class="btn_add_task">Add task</button>
             </div>
 				
             <div class="column" id= "column_done">
                 <h3>Done</h3>
                 <div id="done"></div>
+                <button class="btn_add_task">Add task</button>
             </div>
+        </div>
+
+        <div class="footer">
+            <div >footer</div>
         </div>
 
     </div>
