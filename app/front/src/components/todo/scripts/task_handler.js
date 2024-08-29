@@ -67,15 +67,18 @@ function displayTasks(tasks) {
             todoContainer.appendChild(taskCard);
         }
         taskCard.innerHTML = `
-            <div class="card">
-                <h3>${task.title}</h3>
-                <p>${task.description}</p>
-                <p><strong>Doing:</strong> ${task.doing}</p>
-                <p><strong>Done:</strong> ${task.done}</p>
-                <p><strong>Created At:</strong> ${task.createdAt}</p>
-                <p><strong>Updated At:</strong> ${task.updatedAt}</p>
-				<button class="btn_edit_task">Edit</button>
-                <button class="btn_rmv_task">Delete</button>
+            <div class="card" onclick="toggleDescription(this)">
+                <h4>${task.title}</h3>
+                <div class="description" style="display: none;">
+                    <p>${task.description}</p>
+                    <p><strong>Doing:</strong> ${task.doing}</p>
+                    <p><strong>Done:</strong> ${task.done}</p>
+                    <p><strong>Created At:</strong> ${task.createdAt}</p>
+                    <p><strong>Updated At:</strong> ${task.updatedAt}</p>
+                    <p></p>
+                    <button class="btn_edit_task">Edit</button>
+                    <button class="btn_rmv_task">Delete</button>
+                </div>   
             </div>
         `;
     });
