@@ -68,17 +68,28 @@ function displayTasks(tasks) {
         }
         taskCard.innerHTML = `
             <div class="card" onclick="toggleDescription(this)">
-                <h4>${task.title}</h3>
+                <h4>${task.title}</h4>
                 <div class="description" style="display: none;">
                     <p>${task.description}</p>
+                </div>    
+                <div class="doing" style="display: none;">    
                     <p><strong>Doing:</strong> ${task.doing}</p>
+                </div>    
+                <div class="done" style="display: none;">     
                     <p><strong>Done:</strong> ${task.done}</p>
+                </div>    
+                <div class="created" style="display: none;"> 
                     <p><strong>Created At:</strong> ${task.createdAt}</p>
+                </div>    
+                <div class="updated" style="display: none;"> 
                     <p><strong>Updated At:</strong> ${task.updatedAt}</p>
-                    <p></p>
+                </div> 
+                <div class="buttons" style="display: none;">   
+                    <br>
                     <button class="btn_edit_task">Edit</button>
                     <button class="btn_rmv_task">Delete</button>
-                </div>   
+                    <button class="btn_close_task">Close</button>
+                </div>    
             </div>
         `;
     });
