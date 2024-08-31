@@ -25,19 +25,5 @@ function toggleDescription(card) {
         created.style.display = 'none';
         updated.style.display = 'none';
         buttons.style.display = 'none';
-
-        // Hacer que los campos title, description, doing y done no sean editables
-        const title = card.querySelector('input[type="text"]');
-        title.readOnly = true;
-        description.querySelector('textarea').readOnly = true;
-
-        [doingField, doneField].forEach(field => {
-            field.disabled = true;
-        });
-    });
-
-    editButton.addEventListener('click', (event) => {
-        event.stopPropagation();
-        showEditPopup(card); // Llama a la función del archivo externo
     });
 }

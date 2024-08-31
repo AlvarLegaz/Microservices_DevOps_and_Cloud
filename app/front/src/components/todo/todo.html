@@ -8,14 +8,14 @@
     <link href="css/grid_layout_styles.css" rel="stylesheet">
     <link href="css/elements_styles.css" rel="stylesheet">
     <link href="css/buttons_styles.css" rel="stylesheet">
+    <link href="css/popup_styles.css" rel="stylesheet">
 	<!-- Custom JS -->
 	<script defer src="scripts/task_handler.js"></script>
     <script defer src="scripts/display_scripts.js"></script>
-    <script defer src="scripts/edit_task.js"></script>
+    <script src="scripts/pop_up_script.js"></script>
+    <script src="scripts/edit_task.js"></script>
 </head>
 <body>
-    <body>
-	
 	<div class="container"> 
 
         <div class="header">
@@ -28,11 +28,11 @@
             <div class="menu_element">Cronograma</div>
         </div>
 
-        <div class="main">
+        <div class="main" id="main_grid">
             <div class="column" id= "column_toDo">
                 <h3>To Do</h3>
 		        <div id="toDo"></div>
-                <button class="btn_add_task">Add task</button>
+                <button class="btn_add_task" id="add_task">Add task</button>
             </div>
 				
             <div class="column" id= "column_doing">
@@ -55,7 +55,6 @@
         </div>
 
         <div class="footer">
-            <div >footer</div>
         </div>
 
     </div>
