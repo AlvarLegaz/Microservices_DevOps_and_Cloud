@@ -1,9 +1,10 @@
 body {
-    background-color:#161a2d;
+    background-color:#0066a3;
     justify-content: center;
     align-items: center;
     height: 100vh;
     margin: 0;
+    
 }
 
 .container {
@@ -19,30 +20,33 @@ body {
 
 .header { 
     grid-area: header;
-    background-color:#161a2d;       
+    background-color:#0066a3;       
     transition: box-shadow 0.3s ease; /* Transición suave */ 
-    border: 1px solid whitesmoke;
-    transition: border 0.5s ease-in-out;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
 }
 
 .menu{ 
     grid-area: menu; 
-    background-color:#161a2d;       
-    border: 1px solid whitesmoke;
+    background-color: #005590;       
+    /*border: 1px solid #0f111f;*/
     transition: border 0.5s ease-in-out;
+    padding: 20px 10px;
    
 }
 
 
 .main { 
     grid-area: main; 
-    background-color:#1e223b; 
+    background-color:#0079c0; 
     display: flex;
     flex-wrap: nowrap; /* Distribucion de los items en filas o columnas*/
     justify-content: flex-start; /* Alineacion horizontal de los items*/
     align-items: flex-start; /* Alineacion vertical de items*/
     gap: 10px;
-    padding: 10px;
+    padding: 50px;
     
 }
 
@@ -52,14 +56,7 @@ body {
 
 .footer { grid-area: footer; 
     background-color:#161a2d;
-    border: 1px solid whitesmoke;
     border-radius: 0px;
 }
 
-.title {
-    text-align: center;
-    font-size: 24px;
-    margin-bottom: 20px;
-    color: #e0e0e0;
-}
 

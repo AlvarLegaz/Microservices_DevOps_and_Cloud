@@ -1,4 +1,23 @@
+.title {
+    font-family: 'Allura', cursive;
+    font-size: 48px;
+    color: lightgray;
+    text-align: left;
+    flex: 1;
+    margin: 20px 0;
+}
+
+.subtitle {
+    font-family: 'Allura', cursive;
+    font-size: 40px;
+    color: lightgray;
+    text-align: center;
+    flex: 20;
+    margin: 20px 0;
+}
+
 .menu_element { 
+    font-family: 'Roboto', sans-serif;
     border-radius: 2px;
     font-size: large;
     transition: box-shadow 0.3s ease;/* Sombra al pasar */
@@ -7,17 +26,18 @@
 }
 .menu_element:hover {
     font-weight: bold;
-    background-color: lightgray;
+    background-color: whitesmoke;
     color: black;
     box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.5); /* Sombra al pasar el cursor */
 }
 
 .column {
+    font-family: 'Roboto', sans-serif;
     background-color: #f9f9f9d5;
-    width: 250px;
+    width: 300px;
     border: 1px solid #ddd;
     border-radius: 15px;
-    padding: 5px;
+    padding: 10px;
 }
 
 .column h3 {

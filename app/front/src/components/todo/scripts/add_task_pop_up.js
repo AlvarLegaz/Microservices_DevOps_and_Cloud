@@ -13,12 +13,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Añadir event listener al contenedor principal
     document.querySelector('.main').addEventListener('click', function(event) {
-        if (event.target.classList.contains('btn_edit_task')) {
+        if (event.target.classList.contains('btn_add_task')) {
             document.getElementById('popup').style.display = 'block';
         }
     });
 
-    document.querySelector('.close-btn').addEventListener('click', function() {
+    document.querySelector('.close-btn').addEventListener('click', function(event) {
         document.getElementById('popup').style.display = 'none';
     });
 
