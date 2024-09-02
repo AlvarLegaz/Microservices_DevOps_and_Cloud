@@ -6,7 +6,17 @@ document.addEventListener('DOMContentLoaded', function() {
     edit_popup.innerHTML = `
         <div class="popup-content">
             <span class="close-btn">&times;</span>
-            <p id="edit_message">Tarea editada</p>
+            <div>
+                <label id="task_id">Task id</label><br><br>
+
+                <label for="title">Título:</label>
+                <textarea id="title" name="title"></textarea><br><br>
+
+                <label for="description">Description:</label>
+                <textarea id="description" name="edit"></textarea><br><br>
+
+                <input type="submit" class="update_task" value="Update">
+            </div>
         </div>
     `;
     document.body.appendChild(edit_popup);
@@ -19,16 +29,25 @@ document.addEventListener('DOMContentLoaded', function() {
             const card = event.target.closest('.card');
             const cardId = card ? card.id : 'No ID found';
             console.log(cardId);
+            console.log(`Envía get a id: base_url/${cardId}`);
 
             // Actualizar el párrafo con el ID de la tarjeta
-            document.getElementById('edit_message').textContent = `Tarea editada: ${cardId}`;
-
+            document.getElementById('task_id').textContent = `Task ID: ${cardId}`;
+            document.getElementById('title').textContent = `Tarea editada: ${cardId}`;
+            document.getElementById('description').textContent = `Tarea editada: ${cardId}`;
+            
             document.getElementById('edit_popup').style.display = 'block';
         }
     });
 
     document.querySelector('.close-btn').addEventListener('click', function() {
         document.getElementById('edit_popup').style.display = 'none';
+    });
+
+    document.querySelector('.update_task').addEventListener('click', function(event) {
+        const card = event.target.closest('.card');
+        const cardId = card ? card.id : 'No ID found';
+        console.log(`Envía put a id: base_url/${cardId}`);
     });
 
     window.addEventListener('click', function(event) {
