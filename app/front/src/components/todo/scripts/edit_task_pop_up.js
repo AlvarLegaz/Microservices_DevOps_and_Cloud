@@ -7,15 +7,15 @@ document.addEventListener('DOMContentLoaded', function() {
         <div class="popup-content">
             <span class="close-btn">&times;</span>
             <div>
-                <label id="task_id">Task id</label><br><br>
+                <label class="label-element" id="task_id">Task id</label><br><br>
 
-                <label for="title">Título:</label>
-                <textarea id="title" name="title"></textarea><br><br>
+                <label class="label-element" for="title">Título:</label>
+                <textarea class="input-style" id="title" name="title" rows="2"></textarea><br><br>
 
-                <label for="description">Description:</label>
-                <textarea id="description" name="edit"></textarea><br><br>
+                <label class="label-element" for="description">Description:</label>
+                <textarea class="input-style" id="description" name="edit" rows="4"></textarea><br><br>
 
-                <input type="submit" class="update_task" value="Update">
+                <input type="submit" class="update-task-btn" value="Update">
             </div>
         </div>
     `;
@@ -31,10 +31,14 @@ document.addEventListener('DOMContentLoaded', function() {
             console.log(cardId);
             console.log(`Envía get a id: base_url/${cardId}`);
 
+            // Procesa respuesta
+            const task = getTaskById(cardId)
+            console.log(task);
+
             // Actualizar el párrafo con el ID de la tarjeta
-            document.getElementById('task_id').textContent = `Task ID: ${cardId}`;
-            document.getElementById('title').textContent = `Tarea editada: ${cardId}`;
-            document.getElementById('description').textContent = `Tarea editada: ${cardId}`;
+            document.getElementById('task_id').textContent = task.id;
+            document.getElementById('title').textContent = task.title;
+            document.getElementById('description').textContent = task.description;
             
             document.getElementById('edit_popup').style.display = 'block';
         }
@@ -44,7 +48,7 @@ document.addEventListener('DOMContentLoaded', function() {
         document.getElementById('edit_popup').style.display = 'none';
     });
 
-    document.querySelector('.update_task').addEventListener('click', function(event) {
+    document.querySelector('.update-task-btn').addEventListener('click', function(event) {
         const card = event.target.closest('.card');
         const cardId = card ? card.id : 'No ID found';
         console.log(`Envía put a id: base_url/${cardId}`);
