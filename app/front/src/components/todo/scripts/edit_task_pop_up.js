@@ -6,17 +6,10 @@ document.addEventListener('DOMContentLoaded', function() {
     edit_popup.innerHTML = `
         <div class="popup-content">
             <span class="close-btn">&times;</span>
-            <div>
-                <label class="label-element" id="task_id">Task id</label><br><br>
-
-                <label class="label-element" for="title">Título:</label>
-                <textarea class="input-style" id="title" name="title" rows="2"></textarea><br><br>
-
-                <label class="label-element" for="description">Description:</label>
-                <textarea class="input-style" id="description" name="edit" rows="4"></textarea><br><br>
-
-                <input type="submit" class="update-task-btn" value="Update">
-            </div>
+            <spam id="task_id">Task id</spam><br><br>
+            <textarea class="input-style" id="title" name="title" rows="2"></textarea><br><br>
+            <textarea class="input-style" id="description" name="edit" rows="4"></textarea><br><br>
+            <input type="submit" class="update-task-btn" value="Update">
         </div>
     `;
     document.body.appendChild(edit_popup);
