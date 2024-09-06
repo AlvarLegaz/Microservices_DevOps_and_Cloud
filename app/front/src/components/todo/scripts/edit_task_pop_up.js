@@ -42,8 +42,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     document.querySelector('.update-task-btn').addEventListener('click', function(event) {
-        const card = event.target.closest('.card');
-        const cardId = card ? card.id : 'No ID found';
+        const cardId = document.getElementById('task_id').textContent ;
         console.log(`Envía put a id: base_url/${cardId}`);
     });
 
