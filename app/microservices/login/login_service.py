@@ -1,43 +1,44 @@
-import http.client
-from flask import Flask
-from flask import request
-from flask_cors import CORS
-from app.microservices.login.login_service import LoginService 
-
-api_application = Flask(__name__)
-CORS(api_application)
-
-HEADERS = {"Content-Type": "application/json"}
-
-my_login_srv = LoginService()
-
-@api_application.route("/")
-def hello():
-    return ("Hello from login api. version 1.1.0", http.client.OK, HEADERS)
+import os
+from dotenv import load_dotenv
+from app.tools.security_toolbox import security_toolbox
+from app.database_handler.mongodb_handler import mongodb_handler
 
 
-@api_application.route("/login", methods=['POST'])
-def login_by_user():
-    try:
-        entry = request.get_json()
-        response = my_login_srv.login(entry['user'], entry['password'])
-        if response is None:
-            return ({"error": "Incorrect username or password"}, http.client.UNAUTHORIZED, HEADERS)
+load_dotenv('app/.env')
+
+DB_URI = os.getenv('DB_URI')
+DB_NAME = os.getenv('DB_NAME')
+COLLECTION_NAME = os.getenv('COLLECTION_NAME')
+
+SECRECT_JWT = os.getenv('SECRECT_JWT')
+JWT_TOKEN_LIFETIME_MIN = 10
+
+db_url = "mongodb://localhost:27017"
+db_name = 'my_users_db'
+collection_name = 'users'
+
+
+class LoginService:
+
+    def __init__(self):
+        self.my_db = mongodb_handler(DB_URI, DB_NAME, COLLECTION_NAME)
+        self.my_security_toolbox = security_toolbox(SECRECT_JWT)
+        
+
+    def login(self, username, password):
+        password_sha_signature = self.my_security_toolbox.get_sha256_signature(password)
+       	response = self.my_db.find_one({'user': username, 'pass': password_sha_signature})
+        if response:
+            return self.my_security_toolbox.get_jwt_token(str(username), JWT_TOKEN_LIFETIME_MIN)
         else:
-            return ({'access_token':response}, http.client.OK, HEADERS)
-    except TypeError as e:
-        return (str(e), http.client.BAD_REQUEST, HEADERS)
-
-
-@api_application.route("/register", methods=['POST'])
-def register_user():
-    try:
-        entry = request.get_json()
-        response = my_login_srv.register_user(entry['user'], entry['password'])
-        if response is None:
-            return ({"error": "Incorrect username or password"}, http.client.UNAUTHORIZED, HEADERS)
+            return None
+    
+    def register_user(self, username, password):
+        password_sha_signature = self.my_security_toolbox.get_sha256_signature(password)
+        response = self.my_db.create({'user': username, 'pass': password_sha_signature})
+        if response:
+            return response
         else:
-            return ({response}, http.client.OK, HEADERS)
-    except TypeError as e:
-        return (str(e), http.client.BAD_REQUEST, HEADERS)   
+            return None
+    
         
