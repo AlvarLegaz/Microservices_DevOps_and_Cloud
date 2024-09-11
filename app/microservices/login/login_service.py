@@ -1,4 +1,5 @@
 import os
+from bson.json_util import dumps
 from dotenv import load_dotenv
 from app.tools.security_toolbox import security_toolbox
 from app.database_handler.mongodb_handler import mongodb_handler
@@ -35,10 +36,8 @@ class LoginService:
     
     def register_user(self, username, password):
         password_sha_signature = self.my_security_toolbox.get_sha256_signature(password)
-        response = self.my_db.create({'user': username, 'pass': password_sha_signature})
-        if response:
-            return response
-        else:
-            return None
+        register_json = {'user': username, 'pass': password_sha_signature}
+        self.my_db.create(register_json)
+        return dumps(register_json)
     
         

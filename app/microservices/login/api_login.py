@@ -34,9 +34,6 @@ def register_user():
     try:
         entry = request.get_json()
         response = my_login_srv.register_user(entry['user'], entry['password'])
-        if response is None:
-            return ({"error": "Incorrect username or password"}, http.client.UNAUTHORIZED, HEADERS)
-        else:
-            return ({response}, http.client.OK, HEADERS)
+        return (response, http.client.OK, HEADERS)
     except TypeError as e:
         return (str(e), http.client.BAD_REQUEST, HEADERS)  
