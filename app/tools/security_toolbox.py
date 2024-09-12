@@ -16,12 +16,16 @@ class security_toolbox:
 
 
     def get_jwt_token(self, user, time_life_minutes):
-        payload = {
-        'user_id': user,
-        'exp': datetime.datetime.now() + datetime.timedelta(minutes=time_life_minutes) 
-        }
-        encoded_token = jwt.encode(payload, self.secret_key, algorithm='HS256')
-        return encoded_token
+        try:
+            user_str=str(user)
+            payload = {
+            'user_id': user_str,
+            'exp': datetime.datetime.now() + datetime.timedelta(minutes=time_life_minutes) 
+            }
+            encoded_token = jwt.encode(payload, self.secret_key, algorithm='HS256')
+            return encoded_token
+        except Exception as e:
+            raise Exception("Security_toobox exception- Fail encoding JWT token: "+str(payload)+ str(e))
 
 
     def decode_jwt_token(self, token):
