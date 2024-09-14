@@ -31,7 +31,7 @@ def login_by_user():
             return ({"error": "Incorrect username or password"}, http.client.UNAUTHORIZED, HEADERS)
         else:
             return ({'access_token':response}, http.client.OK, HEADERS)
-    except Exception as e:
+    except TypeError as e:
         return (str(e), http.client.BAD_REQUEST, HEADERS)
 
 
@@ -40,7 +40,10 @@ def register_user():
     try:
         entry = request.get_json()
         response = my_login_srv.register_user(entry['user'], entry['password'])
-        return (response, http.client.OK, HEADERS)
+        if response is None:
+            return ({"error": "Username already exits"}, http.client.UNAUTHORIZED, HEADERS)
+        else:
+            return (response, http.client.OK, HEADERS)
     except Exception as e:
         return (str(e), http.client.BAD_REQUEST, HEADERS)  
     
