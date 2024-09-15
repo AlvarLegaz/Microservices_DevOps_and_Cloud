@@ -31,7 +31,7 @@ def login_by_user():
             return ({"error": "Incorrect username or password"}, http.client.UNAUTHORIZED, HEADERS)
         else:
             return ({'access_token':response}, http.client.OK, HEADERS)
-    except Exception as e:
+    except TypeError as e:
         return (str(e), http.client.BAD_REQUEST, HEADERS)
 
 
