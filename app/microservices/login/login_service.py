@@ -42,7 +42,7 @@ class LoginService:
             password_sha_signature = self.my_security_toolbox.get_sha256_signature(password)
             register_json = {'user': username, 'pass': password_sha_signature}
             if self.user_already_exists(username):
-                return "Error: user already exists"
+                return None
             else:
                 self.my_db.create(register_json)
                 return dumps(register_json)

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login y Registro</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="css/styles.css" rel="stylesheet">
+</head>
+<body>
+    <!--- Login form -->
+    <div class="container" id="login-container">
+        <div class="row justify-content-center">
+            <div class="col-md-4">
+                <h2 class="text-center">Login</h2>
+                <form id="loginForm" class="login-form">
+                    <div class="form-group">
+                        <label for="username">Username:</label>
+                        <input type="text" id="username" name="username" class="form-control" value="" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password:</label>
+                        <input type="password" id="password" name="password" class="form-control" value="" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block">Login</button>
+                </form>
+                <button id="showRegisterForm" class="btn btn-secondary btn-block mt-3">Registrar</button>
+            </div>
+        </div>
+    </div>
+    <!--- Display form -->    
+    <div class="container" id="register-container" style="display: none;">
+        <div class="row justify-content-center">
+          	<div class="col-md-4">
+               	<h2 class="text-center">Registro</h2>
+               	<form id="registerForm" class="register-form">
+                   		<div class="form-group">
+                       		<label for="newUsername">Username:</label>
+                       		<input type="text" id="newUsername" name="newUsername" class="form-control" required>
+                   		</div>
+                   		<div class="form-group">
+                       		<label for="newPassword">Password:</label>
+                       		<input type="password" id="newPassword" name="newPassword" class="form-control" required>
+                   		</div>
+                   		<button type="submit" class="btn btn-primary btn-block">Registrar</button>
+               	</form>
+                <button id="showLoginForm" class="btn btn-secondary btn-block mt-3">Login</button>
+            </div>	
+        </div>
+    </div>
+
+    <!--- Pop-up Message -->   
+    <div id="message-container" class="alert alert-info message-box" style="display: none;">
+        <span id="close-message" style="cursor: pointer; float: right;">×</span>
+        <h4 id="message-title"></h4>
+        <p id="message-content"></p>
+    </div>
+    
+
+    <!-- Custom JS -->
+    <script src="scripts/login.js"></script>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</body>
+</html>
+
