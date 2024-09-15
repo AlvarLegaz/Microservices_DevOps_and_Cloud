@@ -49,6 +49,12 @@ class mongodb_handler:
         except Exception as e:
             raise Exception("Error listing documents of MongoDB table: " + str(e))
     
+    def list(self, query):
+        try:
+            return self.collection.find(query)
+        except Exception as e:
+            raise Exception("Error listing documents of MongoDB table: " + str(e))
+    
     def find_one(self, query):
         try:
             return self.collection.find_one(query)

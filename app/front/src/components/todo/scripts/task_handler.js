@@ -1,17 +1,5 @@
-async function fetchTasks() {
-    try {
-        const tasks = readTasks();
-        const response = await new Promise((resolve) => {
-            setTimeout(() => resolve(tasks), 1000);
-        });
 
-        console.log(response)
-        displayTasks(response);
-        
-    } catch (error) {
-        console.error('Error al cargar las tareas:', error);
-    }
-}
+
 
 function displayTasks(tasks) {
     const todoContainer = document.getElementById('toDo');
@@ -37,7 +25,7 @@ function displayTasks(tasks) {
             todoContainer.appendChild(taskCard);
         }
         taskCard.innerHTML = `
-            <div class="card" onclick="toggleDescription(this)" id=${task.id}>
+            <div class="card" onclick="toggleDescription(this)" id=${task._id.$oid}>
                 <h4>${task.title}</h4>
                 <div class="description" style="display: none;">
                     <p>${task.description}</p>

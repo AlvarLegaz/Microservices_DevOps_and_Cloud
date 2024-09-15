@@ -4,7 +4,7 @@ from flask_cors import CORS
 from app.microservices.todo.todo_service import TodoService 
 
 api_application = Flask(__name__)
-CORS(api_application)
+CORS(api_application, resources={r"/*": {"origins": "*"}})
 
 HEADERS = {"Content-Type": "application/json"}
 
