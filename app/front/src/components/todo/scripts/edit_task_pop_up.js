@@ -6,11 +6,13 @@ document.addEventListener('DOMContentLoaded', function() {
     edit_popup.innerHTML = `
         <div class="popup-content">
             <span class="close-btn">&times;</span>
-            <spam id="task_id">Task id</spam><br><br>
+            <span id="task_id">Task id</span><br><br>
             <textarea class="input-style" id="title" name="title" rows="2"></textarea><br><br>
             <textarea class="input-style" id="description" name="edit" rows="4"></textarea><br><br>
-            <textarea class="input-style" id="created" name="edit" rows="1"></textarea><br><br>
-            <textarea class="input-style" id="updated" name="edit" rows="1"></textarea><br><br>
+            <label for="doing_check">Doing:</label>
+            <input type="checkbox" class="input-style" id="doing_check" name="do"><br><br>
+            <label for="done_check">Done:</label>
+            <input type="checkbox" class="input-style" id="done_check" name="do"><br><br>
             <input type="submit" class="update-task-btn" value="Update">
         </div>
     `;
@@ -23,20 +25,18 @@ document.addEventListener('DOMContentLoaded', function() {
             // Obtener el ID de la tarjeta que contiene el botón pulsado
             const card = event.target.closest('.card');
             const cardId = card ? card.id : 'No ID found';
-            console.log(cardId);
-            console.log(`Envía get a id: base_url/${cardId}`);
-    
+
             try {
                 // Procesa respuesta
                 const task = await getTaskById(cardId);
                 console.log("Task received:", task);
     
                 // Actualizar el párrafo con el ID de la tarjeta
-                document.getElementById('task_id').textContent = `Task ID: ${task._id.$oid}`;
-                document.getElementById('title').textContent = task.title;
-                document.getElementById('description').textContent = task.description;
-                document.getElementById('created').textContent = task.createdAt;
-                document.getElementById('updated').textContent = task.updateAt;
+                document.getElementById('task_id').value = task._id.$oid;
+                document.getElementById('title').value = task.title;
+                document.getElementById('description').value = task.description;
+                document.getElementById('doing_check').checked  = task.doing;
+                document.getElementById('done_check').checked  = task.done;
                 
                 document.getElementById('edit_popup').style.display = 'block';
             } catch (error) {
@@ -45,15 +45,29 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-
-
     document.querySelector('.close-btn').addEventListener('click', function() {
         document.getElementById('edit_popup').style.display = 'none';
     });
 
-    document.querySelector('.update-task-btn').addEventListener('click', function(event) {
-        const cardId = document.getElementById('task_id').textContent ;
-        console.log(`Envía put a id: base_url/${cardId}`);
+    document.querySelector('.update-task-btn').addEventListener('click', async function(event) {
+        const taskId = document.getElementById('task_id').value ;
+
+        const updated_task = {
+            title: document.getElementById('title').value,
+            description: document.getElementById('description').value,
+            doing: document.getElementById('doing_check').checked,
+            done: document.getElementById('done_check').checked 
+        };
+
+        console.log(updated_task);
+        try {
+            let response = await updateTaskById(taskId, updated_task);
+            console.log(`Updated request response: /${response}`);
+            location.reload();
+            
+        } catch (error) {
+            console.error("Error updating task:", error);
+        }
     });
 
     window.addEventListener('click', function(event) {

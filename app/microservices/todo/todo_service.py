@@ -1,5 +1,6 @@
 import os
 import json
+import datetime
 from bson.json_util import dumps
 from bson.objectid import ObjectId
 from jsonschema import validate, ValidationError
@@ -27,7 +28,7 @@ class TodoService:
                 "createdAt": {"type": "string"},
                 "updatedAt": {"type": "string"}
             },
-            "required": ["title", "description", "doing", "done", "createdAt", "updatedAt"]
+            "required": ["title", "description", "doing", "done"]
         }
         
 
@@ -35,6 +36,9 @@ class TodoService:
         self.validate_task_json(task_json)
         # Add user to the db item. item is task and user
         task_json["user"] = user
+        utc_now = datetime.datetime.utcnow()
+        task_json["createdAt"] = utc_now.strftime("%Y-%m-%d %H:%M:%S")
+        task_json["updatedAt"] = utc_now.strftime("%Y-%m-%d %H:%M:%S")
         self.my_db.create(task_json)
         return dumps(task_json)
     
@@ -46,6 +50,8 @@ class TodoService:
     
     def update_task(self, user, id_task, task_json):
         self.validate_task_json(task_json)
+        utc_now = datetime.datetime.utcnow()
+        task_json["updatedAt"] = utc_now.strftime("%Y-%m-%d %H:%M:%S")
         self.my_db.update({'user': user, "_id": ObjectId(id_task)}, task_json)
         return dumps(task_json)
     

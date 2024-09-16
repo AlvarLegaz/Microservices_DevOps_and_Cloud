@@ -45,3 +45,50 @@ async function getTaskById(id) {
         throw error;
     }
 }
+
+async function deleteTaskById(id) {
+    try {
+        const response = await fetch(`http://127.0.0.1:3001/todo/alvar/${id}`, {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            mode: 'cors'
+        });
+
+        if (!response.ok) {
+            const errorData = await response.json();
+            throw new Error(JSON.stringify(errorData));
+        }
+
+        return response;
+
+    } catch (error) {
+        console.error('Error al cargar la tarea:', error);
+        throw error;
+    }
+}
+
+async function updateTaskById(id, task) {
+    try {
+        const response = await fetch(`http://127.0.0.1:3001/todo/alvar/${id}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            mode: 'cors',
+            body: JSON.stringify(task)
+        });
+
+        if (!response.ok) {
+            const errorData = await response.json();
+            throw new Error(JSON.stringify(errorData));
+        }
+
+        const data = await response.json();
+        console.log('Updated task:', data);
+
+    } catch (error) {
+        console.error('Error al cargar las tareas:', error);
+    }
+}
