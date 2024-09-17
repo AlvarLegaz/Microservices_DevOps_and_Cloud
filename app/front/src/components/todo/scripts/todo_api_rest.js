@@ -1,6 +1,6 @@
-async function fetchTasks() {
+async function getTasksList() {
     try {
-        const response = await fetch('http://127.0.0.1:3001/todo/alvar', {
+        const response = await fetch(`http://127.0.0.1:3001/todo/${user}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json'
@@ -22,9 +22,33 @@ async function fetchTasks() {
     }
 }
 
+async function createTask(task) {
+    try {
+        const response = await fetch(`http://127.0.0.1:3001/todo/${user}`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            mode: 'cors',
+            body: JSON.stringify(task)
+        });
+
+        if (!response.ok) {
+            const errorData = await response.json();
+            throw new Error(JSON.stringify(errorData));
+        }
+
+        const data = await response.json();
+        console.log('Updated task:', data);
+    } 
+    catch (error) {
+        console.error('Error al cargar las tareas:', error);
+    }
+}
+
 async function getTaskById(id) {
     try {
-        const response = await fetch(`http://127.0.0.1:3001/todo/alvar/${id}`, {
+        const response = await fetch(`http://127.0.0.1:3001/todo/${user}/${id}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json'
@@ -48,7 +72,7 @@ async function getTaskById(id) {
 
 async function deleteTaskById(id) {
     try {
-        const response = await fetch(`http://127.0.0.1:3001/todo/alvar/${id}`, {
+        const response = await fetch(`http://127.0.0.1:3001/todo/${user}/${id}`, {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json'
@@ -71,7 +95,7 @@ async function deleteTaskById(id) {
 
 async function updateTaskById(id, task) {
     try {
-        const response = await fetch(`http://127.0.0.1:3001/todo/alvar/${id}`, {
+        const response = await fetch(`http://127.0.0.1:3001/todo/${user}/${id}`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json'

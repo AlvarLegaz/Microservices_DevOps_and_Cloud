@@ -1,6 +1,3 @@
-
-
-
 function displayTasks(tasks) {
     const todoContainer = document.getElementById('toDo');
     const doingContainer = document.getElementById('doing');
@@ -53,4 +50,4 @@ function displayTasks(tasks) {
     });
 }
 
-fetchTasks();
+getTasksList();

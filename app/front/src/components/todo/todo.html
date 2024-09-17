@@ -10,19 +10,37 @@
     <link href="css/buttons_styles.css" rel="stylesheet">
     <link href="css/popup_styles.css" rel="stylesheet">
 	<!-- Custom JS -->
+    <script defer src="scripts/load_enviroment_vars.js"></script>
     <script defer src="scripts/todo_api_rest.js"></script>
 	<script defer src="scripts/task_handler.js"></script>
-    <script defer src="scripts/display_scripts.js"></script>
+    <script defer src="scripts/toggle_cards_descriptions.js"></script>
     <script src="scripts/edit_task_pop_up.js"></script>
     <script src="scripts/delete_task_pop_up.js"></script>
     <script src="scripts/add_task_pop_up.js"></script>
     <script src="scripts/task_CRUD_local.js"></script>
-</head>
+
 <body>
 	<div class="container"> 
 
-        <div class="header">
+        <div class="title_box">
             <div class="title">TaskManager</div>
+        </div>
+            
+        <div class="hvar">
+            
+            <div class="menu_element">Item 1</div>
+            <div class="menu_element">Item 2</div>
+            <div class="menu_element">Item 3</div>
+            <div class="menu_element">Item 4</div>
+            <div class="menu_element">Item 5</div>
+        </div>
+
+        <div class="user_box">
+            <div class="user_workspace">Alvar Workspace</div>
+        </div>
+
+        <div class="header">
+            
             <div class="subtitle">To-Do List</div>
         </div>
 
@@ -36,25 +54,25 @@
             <div class="column" id= "column_toDo">
                 <h3>To Do</h3>
 		        <div id="toDo"></div>
-                <button class="btn_add_task" id="add_task">Add task</button>
+                <button class="btn_add_task" id="add_pending_task">Add task</button>
             </div>
 				
             <div class="column" id= "column_doing">
                 <h3>Doing</h3>
                 <div id="doing"></div>
-                <button class="btn_add_task">Add task</button>
+                <button class="btn_add_task" id="add_doing_task">Add task</button>
             </div>
 				
             <div class="column" id= "column_postpose">
                 <h3>Blocked</h3>
                 <div id="postpose"></div>
-                <button class="btn_add_task">Add task</button>
+                <button class="btn_add_task" id="add_blocked_task">Add task</button>
             </div>
 				
             <div class="column" id= "column_done">
                 <h3>Done</h3>
                 <div id="done"></div>
-                <button class="btn_add_task">Add task</button>
+                <button class="btn_add_task" id="add_done_task">Add task</button>
             </div>
         </div>
 

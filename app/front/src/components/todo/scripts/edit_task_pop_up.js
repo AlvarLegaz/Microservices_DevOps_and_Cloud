@@ -70,9 +70,4 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    window.addEventListener('click', function(event) {
-        if (event.target == document.getElementById('edit_popup')) {
-            document.getElementById('edit_popup').style.display = 'none';
-        }
-    });
 });

@@ -1,6 +1,6 @@
 .title {
     font-family: 'Allura', cursive;
-    font-size: 48px;
+    font-size: 38px;
     color: lightgray;
     text-align: left;
     flex: 1;
@@ -9,9 +9,18 @@
 
 .subtitle {
     font-family: 'Allura', cursive;
-    font-size: 40px;
+    font-size: 30px;
     color: lightgray;
-    text-align: center;
+    text-align: left;
+    flex: 20;
+    margin: 20px 0;
+}
+
+.user_workspace {
+    font-family: 'Allura', cursive;
+    font-size: 20px;
+    color: lightgray;
+    text-align: left;
     flex: 20;
     margin: 20px 0;
 }
@@ -23,12 +32,14 @@
     transition: box-shadow 0.3s ease;/* Sombra al pasar */
     padding: 2px;
     color: lightgray;
+    margin: 10px; /* Separacion entre elementos*/
+    padding: 10px;/* margen entre el texto de dentro del elemento y los bordes del mismo elementos*/
 }
 .menu_element:hover {
     font-weight: bold;
-    background-color: whitesmoke;
+    background-color: rgba(245, 245, 245, 0.8); /* Color de fondo con 80% de opacidad */
     color: black;
-    box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.5); /* Sombra al pasar el cursor */
+    
 }
 
 .column {

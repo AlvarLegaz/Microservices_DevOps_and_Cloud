@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 location.reload();
                 
             } catch (error) {
-                console.error("Error al obtener la tarea:", error);
+                console.error("Error al elimiar la tarea:", error);
             }
         }
     });
