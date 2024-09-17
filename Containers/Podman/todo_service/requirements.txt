@@ -1,0 +1,6 @@
+Flask
+python-dotenv
+jsonschema
+flask_cors
+PyJWT
+pymongo

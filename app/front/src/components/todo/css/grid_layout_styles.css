@@ -1,0 +1,106 @@
+
+:root {
+    --background-color:#0066a3;
+    --main-background-color:#0079c0;
+    
+}
+
+body {
+    background-color:var(--background-color);
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    
+}
+
+.container {
+    display: grid;
+    grid-template-columns: 250px auto 50px;
+    grid-template-rows: 50px 50px 85vh auto;
+    grid-template-areas: 
+        "title_box hvar hvar"
+        "user_box header header"
+        "menu main main"
+        "footer footer footer";
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.title_box { 
+    grid-area: title_box;
+    background-color:var(--background-color);      
+    transition: box-shadow 0.3s ease; /* Transición suave */ 
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 0.1px outset white;
+}
+
+.hvar { 
+    grid-area: hvar;
+    background-color:var(--background-color);      
+    transition: box-shadow 0.3s ease; /* Transición suave */ 
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px outset white;
+}
+
+.user_box { 
+    grid-area: user_box;
+    background-color:var(--background-color);      
+    transition: box-shadow 0.3s ease; /* Transición suave */ 
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px outset white;
+    border-right: 1px outset white;
+}
+
+.header { 
+    grid-area: header;
+    background-color:#005080;       
+    transition: box-shadow 0.3s ease; /* Transición suave */ 
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px outset white;
+}
+
+.menu{ 
+    grid-area: menu; 
+    background-color: var(--background-color);       
+    /*border: 1px solid #0f111f;*/
+    transition: border 0.5s ease-in-out;
+    padding: 20px 10px;
+    border-bottom: 1px outset white;
+    border-right: 1px outset white;
+}
+
+
+.main { 
+    grid-area: main; 
+    background-color:var(--main-background-color);    
+    display: flex;
+    flex-wrap: nowrap; /* Distribucion de los items en filas o columnas*/
+    justify-content: flex-start; /* Alineacion horizontal de los items*/
+    align-items: flex-start; /* Alineacion vertical de items*/
+    gap: 10px;
+    padding: 15px;
+    
+}
+
+.sidebar { grid-area: sidebar; 
+    background-color:#161a2d;
+}
+
+.footer { grid-area: footer; 
+    background-color:#161a2d;
+    border-radius: 0px;
+}
+
+

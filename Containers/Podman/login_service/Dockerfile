@@ -1,5 +1,5 @@
 # Usar una imagen base de Python
-FROM python:3.9-alpine
+FROM python:3.11-alpine
 
 # Establecer un directorio de trabajo
 WORKDIR /code
@@ -18,7 +18,7 @@ COPY ./app ./app
 ENV PYTHONPATH=.
 
 # Establecer la variable de entorno FLASK_APP
-ENV FLASK_APP=./app/services/login/api_login.py
+ENV FLASK_APP=./app/microservices/login/api_login.py
 
 # Exponer el puerto en el que se ejecutará Flask
 EXPOSE 3000

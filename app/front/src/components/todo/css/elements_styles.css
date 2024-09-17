@@ -1,0 +1,97 @@
+.title {
+    font-family: 'Allura', cursive;
+    font-size: 38px;
+    color: lightgray;
+    text-align: left;
+    flex: 1;
+    margin: 20px 0;
+}
+
+.subtitle {
+    font-family: 'Allura', cursive;
+    font-size: 30px;
+    color: lightgray;
+    text-align: left;
+    flex: 20;
+    margin: 20px 0;
+}
+
+.user_workspace {
+    font-family: 'Allura', cursive;
+    font-size: 20px;
+    color: lightgray;
+    text-align: left;
+    flex: 20;
+    margin: 20px 0;
+}
+
+.menu_element { 
+    font-family: 'Roboto', sans-serif;
+    border-radius: 2px;
+    font-size: large;
+    transition: box-shadow 0.3s ease;/* Sombra al pasar */
+    padding: 2px;
+    color: lightgray;
+    margin: 10px; /* Separacion entre elementos*/
+    padding: 10px;/* margen entre el texto de dentro del elemento y los bordes del mismo elementos*/
+}
+.menu_element:hover {
+    font-weight: bold;
+    background-color: rgba(245, 245, 245, 0.8); /* Color de fondo con 80% de opacidad */
+    color: black;
+    
+}
+
+.column {
+    font-family: 'Roboto', sans-serif;
+    background-color: #f9f9f9d5;
+    width: 300px;
+    border: 1px solid #ddd;
+    border-radius: 15px;
+    padding: 10px;
+}
+
+.column h3 {
+    text-align: left;
+    font-size: 18px;
+    margin-bottom: 5px;
+    margin-top: 1px;
+}
+
+#column_toDo {
+    background-color: lightgray;
+}
+
+#column_doing {
+    background-color: lightgray;
+}
+
+#column_postpose {
+    background-color: lightgray;
+}
+
+#column_done {
+    background-color: lightgray;
+}
+
+.card {
+    background-color: #ffffff;
+    padding: 5px;
+    margin-bottom: 5px;
+    border-radius: 15px;
+    border: 2px solid transparent;
+    transition: border-color 0.3s ease;
+}
+
+.card:hover {
+  border-color: #4682B4; /*Cambia el color a azul celeste cuando el cursor está sobre el div */
+}
+
+.btn-primary {
+    background-color: #007bff;
+    border: none;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+}

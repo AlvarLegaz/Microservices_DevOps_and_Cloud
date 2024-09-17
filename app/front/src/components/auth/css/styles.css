@@ -1,0 +1,58 @@
+body {
+    background-color: #343a40;
+    color: #ffffff;
+}
+
+.container {
+    margin-top: 100px;
+}
+
+.login-container {
+    margin-top: 100px;
+}
+
+.register-container {
+    margin-top: 100px;
+}
+
+.message-box {
+    max-width: 500px; /* Ancho máximo del mensaje */
+    margin: 20px auto; /* Centra el mensaje horizontalmente */
+    padding: 20px; /* Espaciado interno */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Sombra para darle un poco de estilo */
+    position: relative; /* Necesario para ajustar la posición */
+    top: -150px; /* Ajusta este valor para mover el mensaje más arriba o abajo */
+}
+
+.login-form {
+    background-color: #495057;
+    padding: 30px;
+    border-radius: 10px;
+}
+
+.register-form {
+    background-color: #495057;
+    padding: 30px;
+    border-radius: 10px;
+}
+
+
+.form-control {
+    background-color: #6c757d;
+    border: none;
+    color: #ffffff;
+}
+
+.form-control:focus {
+    background-color: #6c757d;
+    color: #ffffff;
+}
+
+.btn-primary {
+    background-color: #007bff;
+    border: none;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+}

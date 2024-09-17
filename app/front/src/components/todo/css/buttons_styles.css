@@ -1,0 +1,181 @@
+/* Add Task button*/ 
+
+.btn_add_task {
+    --color: #0077ff;
+    color: var(--color);
+    border: 2px solid var(--color);
+    position: relative;
+    font-weight: bold;
+    font-size: 12px;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 1em 2.5em;
+    display: inline-block;
+    border-radius: 15px;
+    transition: all .2s;
+    font-family: inherit;
+    background-color: white;
+}
+   
+.btn_add_task:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+   
+.btn_add_task:active {
+    transform: translateY(-1px);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+   }
+   
+.btn_add_task::after {
+    content: "";
+    display: inline-block;
+    height: 100%;
+    width: 100%;
+    border-radius: 100px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    transition: all .4s;
+}
+   
+.btn_add_task::after {
+    background-color: #fff;
+}
+   
+.btn_add_task:hover::after {
+    transform: scaleX(1.4) scaleY(1.6);
+    opacity: 0;
+}
+
+
+/* Edit Task button*/ 
+.btn_edit_task {
+    --color: #0077ff;
+    font-family: inherit;
+    width: 6em;
+    height: 2.6em;
+    line-height: 2.5em;
+    overflow: hidden;
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: bold;
+    z-index: 1;
+    color: var(--color);
+    border: 2px solid var(--color);
+    border-radius: 6px;
+    position: relative;
+  }
+  
+.btn_edit_task::before {
+    position: absolute;
+    content: "";
+    background: var(--color);
+    width: 150px;
+    height: 200px;
+    z-index: -1;
+    border-radius: 50%;
+  }
+  
+.btn_edit_task:hover {
+    color: white;
+  }
+  
+.btn_edit_task:before {
+    top: 100%;
+    left: 100%;
+    transition: 0.3s all;
+  }
+  
+.btn_edit_task:hover::before {
+    top: -30px;
+    left: -30px;
+  }
+ 
+  
+/* Remove Task button*/ 
+.btn_rmv_task {
+    --color: red;
+    font-family: inherit;
+    width: 6em;
+    height: 2.6em;
+    line-height: 2.5em;
+    overflow: hidden;
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: bold;
+    z-index: 1;
+    color: var(--color);
+    border: 2px solid var(--color);
+    border-radius: 6px;
+    position: relative;
+  }
+  
+.btn_rmv_task::before {
+    position: absolute;
+    content: "";
+    background: var(--color);
+    width: 150px;
+    height: 200px;
+    z-index: -1;
+    border-radius: 50%;
+  }
+  
+.btn_rmv_task:hover {
+    color: white;
+  }
+  
+.btn_rmv_task:before {
+    top: 100%;
+    left: 100%;
+    transition: 0.3s all;
+  }
+  
+.btn_rmv_task:hover::before {
+    top: -30px;
+    left: -30px;
+  }
+  
+  /* Close Task button*/ 
+.btn_close_task {
+    --color: green;
+    font-family: inherit;
+    width: 6em;
+    height: 2.6em;
+    line-height: 2.5em;
+    overflow: hidden;
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: bold;
+    z-index: 1;
+    color: var(--color);
+    border: 2px solid var(--color);
+    border-radius: 6px;
+    position: relative;
+  }
+  
+.btn_close_task::before {
+    position: absolute;
+    content: "";
+    background: var(--color);
+    width: 150px;
+    height: 200px;
+    z-index: -1;
+    border-radius: 50%;
+  }
+  
+.btn_close_task:hover {
+    color: white;
+  }
+  
+.btn_close_task:before {
+    top: 100%;
+    left: 100%;
+    transition: 0.3s all;
+  }
+  
+.btn_close_task:hover::before {
+    top: -30px;
+    left: -30px;
+  }
