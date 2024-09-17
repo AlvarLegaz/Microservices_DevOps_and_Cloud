@@ -16,7 +16,7 @@
     margin: 20px 0;
 }
 
-.user_workspace {
+#user_workspace {
     font-family: 'Allura', cursive;
     font-size: 20px;
     color: lightgray;
@@ -44,7 +44,7 @@
 
 .column {
     font-family: 'Roboto', sans-serif;
-    background-color: #f9f9f9d5;
+    background-color: #e0e0e0f8;
     width: 300px;
     border: 1px solid #ddd;
     border-radius: 15px;
@@ -58,21 +58,6 @@
     margin-top: 1px;
 }
 
-#column_toDo {
-    background-color: lightgray;
-}
-
-#column_doing {
-    background-color: lightgray;
-}
-
-#column_postpose {
-    background-color: lightgray;
-}
-
-#column_done {
-    background-color: lightgray;
-}
 
 .card {
     background-color: #ffffff;
