@@ -34,7 +34,7 @@ class SecurityToolbox:
         except jwt.DecodeError:
             raise Exception("Error al decodificar el token.")      
 
-if __name__ == '__main__':
+if __name__ == '__main__':          # pragma: no cover
     # Uso de la clase
     my_toolbox = SecurityToolbox("sdasdasdas")
 

@@ -3,18 +3,17 @@ import unittest
 import hashlib
 import os
 from dotenv import load_dotenv
-from app.tools.security_toolbox import security_toolbox
+from app.tools.security_toolbox import SecurityToolbox
 
 
 load_dotenv()
-secret_key = os.getenv('SECRECT_JWT')
+secret_key = os.getenv('SECRET_JWT')
 
 
 @pytest.mark.unit
 class TestUsersJsonFileManager(unittest.TestCase):
     def setUp(self):
-        self.my_security_tools = security_toolbox(secret_key)
-        pass
+        self.my_security_tools = SecurityToolbox(secret_key)
     
     def test_get_sha256_signature_correct_result(self):
         num_data = 98547
@@ -52,7 +51,7 @@ class TestUsersJsonFileManager(unittest.TestCase):
         self.assertNotEqual(signature_list_calculated, self.my_security_tools.get_sha256_signature(list_data))
 
 
-    def test_get_sha256_signature_correct_result(self):
+    def test_token_function_correct_result(self):
         user = 'pepe01'
         expiration_time_min = 2
 
@@ -60,3 +59,16 @@ class TestUsersJsonFileManager(unittest.TestCase):
         credentials_from_token = self.my_security_tools.decode_jwt_token(token)
         user_decoded_from_toke = credentials_from_token['user_id']
         self.assertEqual(user, str(user_decoded_from_toke))
+    
+    def test_token_function_correct_result(self):
+        user = 'pepe01'
+        bad_user = 'pepe03'
+        expiration_time_min = 2
+
+        token = self.my_security_tools.get_jwt_token(user, expiration_time_min)
+        credentials_from_token = self.my_security_tools.decode_jwt_token(token)
+        user_decoded_from_toke = credentials_from_token['user_id']
+        self.assertNotEqual(bad_user, str(user_decoded_from_toke))    
+        
+    if __name__ == "__main__":  # pragma: no cover
+        unittest.main()
