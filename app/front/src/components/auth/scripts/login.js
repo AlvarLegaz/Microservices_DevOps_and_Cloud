@@ -1,12 +1,17 @@
 document.addEventListener('DOMContentLoaded', function() {
 	
-	let redirectUrl = '';
+	let redirectUrl = './todo.html'
+	let apiKey = '123456789';
+	const loginServiceBaseUrl = 'http://127.0.0.1:3000/';
+	const loginEndpoint = '/login';
+	const registerEndpoint = '/register';
 
     // Cargar config.json al cargar la página
     fetch('config.json')
         .then(response => response.json())
         .then(configData => {
             redirectUrl = configData.redirect_url_after_login_ok;
+			apiKey = configData.login_apiKey;
         })
         .catch(error => {
             console.error('Error al leer el archivo config.json:', error);
@@ -20,7 +25,9 @@ document.addEventListener('DOMContentLoaded', function() {
 		const data = { user, password };
 		console.log('Login body:', data);
 
-		fetch('http://127.0.0.1:3000/login', {
+		const loginUrl = `${loginServiceBaseUrl}${loginEndpoint}`;
+
+		fetch(loginUrl, {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json'
@@ -60,6 +67,7 @@ document.addEventListener('DOMContentLoaded', function() {
 		fetch('http://127.0.0.1:3000/register', {
 			method: 'POST',
 			headers: {
+				'X-Hash': apiKey,
 				'Content-Type': 'application/json'
 			},
 			mode: 'cors',
