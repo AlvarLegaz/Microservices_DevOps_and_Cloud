@@ -1,0 +1,9 @@
+Region: región corresponde con la zona geográfica en la que Azure tiene presencia
+física (mediante uno o varios centros de datos conectados por redes de baja
+latencia)
+
+
+Opciones de disponibilidad:
+- Zonas de disponibilidad (Availability Zones) que brindan protección contra fallos completos del centro de datos.
+- Conjuntos de disponibilidad (Availability Sets) para poder mantener las aplicaciones disponibles durante ventanas de mantenimiento o ante errores de hardware.
+- Pares de regiones que permiten una protección regional sin salir de los límites de residencia de datos.

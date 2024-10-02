@@ -19,7 +19,7 @@ except Exception as e:
 
 @api_application.route("/")
 def hello():
-    return ("Hello from login api. version 1.1.1", http.client.OK, HEADERS)
+    return ("Hello from login api. version 1.1.2", http.client.OK, HEADERS)
 
 
 @api_application.route("/login", methods=['POST'])
@@ -31,7 +31,7 @@ def login_by_user():
             return ({"error": "Incorrect username or password"}, http.client.UNAUTHORIZED, HEADERS)
         else:
             return ({'access_token':response}, http.client.OK, HEADERS)
-    except TypeError as e:
+    except Exception as e:
         return (str(e), http.client.BAD_REQUEST, HEADERS)
 
 

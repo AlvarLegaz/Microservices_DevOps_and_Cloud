@@ -1,4 +1,6 @@
 {
+	"login_apiKey": "aswes8sdgañlekrwaorpañlcasre",
+	
 	"login_service_base_url": "127.0.0.1",
 	"login_service_base_port": "3000",
 	"redirect_url_after_login_ok": "/todo.html"

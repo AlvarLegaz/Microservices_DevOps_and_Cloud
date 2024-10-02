@@ -1,13 +1,13 @@
 document.addEventListener('DOMContentLoaded', function() {
 	
-	let redirectUrl = './todo.html'
-	let apiKey = '123456789';
-	const loginServiceBaseUrl = 'http://127.0.0.1:3000/';
-	const loginEndpoint = '/login';
-	const registerEndpoint = '/register';
+	let redirectUrl = ''
+	let apiKey = '';
+	let loginServiceBaseUrl = 'http://127.0.0.1:3000/';
+	let loginEndpoint = '/login';
+	let registerEndpoint = '/register';
 
     // Cargar config.json al cargar la página
-    fetch('config.json')
+    fetch('/auth/config.json')
         .then(response => response.json())
         .then(configData => {
             redirectUrl = configData.redirect_url_after_login_ok;
@@ -17,43 +17,21 @@ document.addEventListener('DOMContentLoaded', function() {
             console.error('Error al leer el archivo config.json:', error);
         });
 
-	document.getElementById('loginForm').addEventListener('submit', function(event) {
+	document.getElementById('loginForm').addEventListener('submit', async function(event) {
+		
 		event.preventDefault();
 		const user = document.getElementById('username').value;
 		const password = document.getElementById('password').value;
-
-		const data = { user, password };
-		console.log('Login body:', data);
-
 		const loginUrl = `${loginServiceBaseUrl}${loginEndpoint}`;
-
-		fetch(loginUrl, {
-			method: 'POST',
-			headers: {
-				'Content-Type': 'application/json'
-			},
-			mode: 'cors',
-			body: JSON.stringify(data)
-		})
-		.then(response => {
-			if (!response.ok) {
-				
-				return response.json().then(errorData => {
-					throw new Error(JSON.stringify(errorData));
-				});
-			}
-			 
-			return response.json();
-		})
-		.then(data => {
-			console.log('Login Success:', data);
-			alert('Goes to selected url');
-		})
-		.catch((error) => {
-			window.location.href = redirectUrl;
+		
+		try{
+			token_jwt = await login(user, password, loginUrl, apiKey)
+			console.log('Login Success:', token_jwt);
+		}
+		catch(error){
 			console.error('Login Error:', error);
 			showMessage('Error en el login:',error.message);
-		});
+		}
 	});
 
 	document.getElementById('registerForm').addEventListener('submit', function(event) {

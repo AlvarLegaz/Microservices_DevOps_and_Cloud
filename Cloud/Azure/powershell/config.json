@@ -1,0 +1,8 @@
+{
+    "ResourceGroupName": "alvar-test",
+    "Location": "WestEU",
+    "VMName": "test01",
+    "AdminUsername": "azureuser",
+    "SSHKeyPath": ".ssh_key\\test01.pub"
+}
+
