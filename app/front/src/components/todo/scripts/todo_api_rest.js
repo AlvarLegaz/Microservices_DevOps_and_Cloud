@@ -24,7 +24,7 @@ async function getTasksList() {
 
 async function createTask(task) {
     try {
-        const response = await fetch(`http://127.0.0.1:3001/todo/${user}`, {
+        const response = await fetch(`{base_url}/todo/${user}`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -48,7 +48,7 @@ async function createTask(task) {
 
 async function getTaskById(id) {
     try {
-        const response = await fetch(`http://127.0.0.1:3001/todo/${user}/${id}`, {
+        const response = await fetch(`{base_url}/todo/${user}/${id}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json'
@@ -72,7 +72,7 @@ async function getTaskById(id) {
 
 async function deleteTaskById(id) {
     try {
-        const response = await fetch(`http://127.0.0.1:3001/todo/${user}/${id}`, {
+        const response = await fetch(`{base_url}/todo/${user}/${id}`, {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json'
@@ -95,7 +95,7 @@ async function deleteTaskById(id) {
 
 async function updateTaskById(id, task) {
     try {
-        const response = await fetch(`http://127.0.0.1:3001/todo/${user}/${id}`, {
+        const response = await fetch(`{base_url}/todo/${user}/${id}`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json'
