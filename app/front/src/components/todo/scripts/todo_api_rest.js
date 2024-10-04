@@ -3,6 +3,7 @@ async function getTasksList() {
         const response = await fetch(`${base_url}/todo/${user}`, {
             method: 'GET',
             headers: {
+                'Authorization': `Bearer ${token_jwt}`
                 'Content-Type': 'application/json'
             },
             mode: 'cors'
@@ -27,6 +28,7 @@ async function createTask(task) {
         const response = await fetch(`{base_url}/todo/${user}`, {
             method: 'POST',
             headers: {
+                'Authorization': `Bearer ${token_jwt}`
                 'Content-Type': 'application/json'
             },
             mode: 'cors',
@@ -51,6 +53,7 @@ async function getTaskById(id) {
         const response = await fetch(`{base_url}/todo/${user}/${id}`, {
             method: 'GET',
             headers: {
+                'Authorization': `Bearer ${token_jwt}`
                 'Content-Type': 'application/json'
             },
             mode: 'cors'
@@ -75,6 +78,7 @@ async function deleteTaskById(id) {
         const response = await fetch(`{base_url}/todo/${user}/${id}`, {
             method: 'DELETE',
             headers: {
+                'Authorization': `Bearer ${token_jwt}`
                 'Content-Type': 'application/json'
             },
             mode: 'cors'
@@ -98,6 +102,7 @@ async function updateTaskById(id, task) {
         const response = await fetch(`{base_url}/todo/${user}/${id}`, {
             method: 'PUT',
             headers: {
+                'Authorization': `Bearer ${token_jwt}`
                 'Content-Type': 'application/json'
             },
             mode: 'cors',
