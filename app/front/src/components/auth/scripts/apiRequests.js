@@ -18,6 +18,7 @@ async function login(user, password, loginUrl, apiKey) {
 	const response = await fetch(loginUrl, {
 		method: 'POST',
 		headers: {
+			'X-ApiKey': apiKey,
 			'X-Hash': hashCalculated,
 			'Content-Type': 'application/json'
 		},
@@ -33,3 +34,26 @@ async function login(user, password, loginUrl, apiKey) {
     return response.json();
 }
 
+async function register(newUser, password, registerUrl, apiKey){
+
+	const data = { newUser, password };
+	const hashCalculated = await hashUrlWithApiKey(registerUrl, apiKey);
+		
+	const response = await fetch(loginUrl, {
+		method: 'POST',
+		headers: {
+			'X-ApiKey': apiKey,
+			'X-Hash': hashCalculated,
+			'Content-Type': 'application/json'
+		},
+		mode: 'cors',
+		body: JSON.stringify(data)
+	})
+	
+	if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(JSON.stringify(errorData));
+    }
+    
+    return response.json();
+}

@@ -36,39 +36,27 @@ document.addEventListener('DOMContentLoaded', function() {
 		}
 	});
 
-	document.getElementById('registerForm').addEventListener('submit', function(event) {
+	document.getElementById('registerForm').addEventListener('submit', async function(event) {
+		
 		event.preventDefault();
 		const newUser = document.getElementById('newUsername').value;
 		const newPassword = document.getElementById('newPassword').value;
+		const registerUrl = `${loginServiceBaseUrl}${registerEndpoint}`;
 
 		const data = { user: newUser, password: newPassword };
 		console.log('Register body:', data);
+		
+		try{
+			response = await regiter(newUser, password, loginUrl, apiKey)
+			console.log('Login Success:', token_jwt);
+			localStorage.setItem("user", user);
+			localStorage.setItem("token_jwt", token_jwt);
+		}
+		catch(error){
+			console.error('Register Error:', error);
+			showMessage('Error in register:',error.message);
+		}
 
-		fetch('http://127.0.0.1:3000/register', {
-			method: 'POST',
-			headers: {
-				'X-Hash': apiKey,
-				'Content-Type': 'application/json'
-			},
-			mode: 'cors',
-			body: JSON.stringify(data)
-		})
-		.then(response => {
-			if (!response.ok) {
-				return response.json().then(errorData => {
-					throw new Error(JSON.stringify(errorData));
-				});
-			}
-			return response.json();
-		})
-		.then(data => {
-			console.log('Register completed: ', data);
-			showMessage('Success!','Register completed');
-		})
-		.catch((error) => {
-			console.error('Registration error Error:', error);
-			showMessage('Registration error:', error.message);
-		});
 	});
 
 	function showMessage(title, message) {
