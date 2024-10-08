@@ -34,7 +34,7 @@ def require_api_key(f):
 @api_application.route("/")
 @require_api_key
 def hello():
-    return ("Hello from login api. version 1.1.2", http.client.OK, HEADERS)
+    return ("Hello from login api. version 2.0.0", http.client.OK, HEADERS)
 
 
 @api_application.route("/login", methods=['POST'])
