@@ -52,6 +52,7 @@ def login_by_user():
 
 
 @api_application.route("/register", methods=['POST'])
+@require_api_key
 def register_user():
     try:
         entry = request.get_json()

@@ -26,6 +26,7 @@ class LoginService:
 
     def login(self, username, password):
         password_sha_signature = self.my_security_toolbox.get_sha256_signature(password)
+        print(f"Hash calculated {password_sha_signature} for pass {password}")
         try:
             response = self.my_db.find_one({'user': username, 'pass': password_sha_signature})
             if response:

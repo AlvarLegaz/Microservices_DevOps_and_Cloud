@@ -47,10 +47,8 @@ document.addEventListener('DOMContentLoaded', function() {
 		console.log('Register body:', data);
 		
 		try{
-			response = await regiter(newUser, password, loginUrl, apiKey)
-			console.log('Login Success:', token_jwt);
-			localStorage.setItem("user", user);
-			localStorage.setItem("token_jwt", token_jwt);
+			response = await register(newUser, newPassword, registerUrl, apiKey)
+			console.log('Register Success:', response);
 		}
 		catch(error){
 			console.error('Register Error:', error);

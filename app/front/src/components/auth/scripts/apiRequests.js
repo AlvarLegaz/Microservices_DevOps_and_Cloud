@@ -34,12 +34,12 @@ async function login(user, password, loginUrl, apiKey) {
     return response.json();
 }
 
-async function register(newUser, password, registerUrl, apiKey){
+async function register(user, password, registerUrl, apiKey){
 
-	const data = { newUser, password };
+	const data = {user, password };
 	const hashCalculated = await hashUrlWithApiKey(registerUrl, apiKey);
 		
-	const response = await fetch(loginUrl, {
+	const response = await fetch(registerUrl, {
 		method: 'POST',
 		headers: {
 			'X-ApiKey': apiKey,

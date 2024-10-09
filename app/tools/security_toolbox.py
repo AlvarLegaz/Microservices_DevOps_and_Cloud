@@ -9,9 +9,12 @@ class SecurityToolbox:
         self.secret_key = secret_key
 
     def get_sha256_signature(self, data):
+        print(f"Original data: {data}")  # Debug prints
         hash_object = hashlib.sha256()
         hash_object.update(str(data).encode('utf-8'))
-        return hash_object.hexdigest()
+        signature = hash_object.hexdigest()
+        print(f"Generated SHA-256 hash: {signature}")  # Debug print
+        return signature
 
     def get_jwt_token(self, user, time_life_minutes):
         try:
