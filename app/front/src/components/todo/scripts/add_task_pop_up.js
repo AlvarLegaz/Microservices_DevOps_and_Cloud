@@ -54,17 +54,17 @@ document.addEventListener('DOMContentLoaded', function() {
     document.querySelector('.create-task-btn').addEventListener('click', async function(event) {
     
         const created_task = {
-            title: document.getElementById('create_task_title').value,
-            description: document.getElementById('create_task_description').value,
-            doing: document.getElementById('create_task_doing_check').checked,
-            done: document.getElementById('create_task_done_check').checked 
+            "title": document.getElementById('create_task_title').value,
+            "description": document.getElementById('create_task_description').value,
+            "doing": document.getElementById('create_task_doing_check').checked,
+            "done": document.getElementById('create_task_done_check').checked 
         };
 
-        console.log(created_task);
+        console.log("Taread creada:", created_task);
         try {
             let response = await createTask(created_task);
             console.log(`Updated request response: /${response}`);
-            location.reload();
+            //location.reload();
             
         } catch (error) {
             console.error("Error updating task:", error);

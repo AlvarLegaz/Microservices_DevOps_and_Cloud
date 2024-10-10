@@ -1,14 +1,18 @@
-var user = "xxx";
-var token_jwt = "xxx";
-var base_url="http://127.0.0.1:3001"
+document.addEventListener('DOMContentLoaded', function() {
 
-function loadEnviroment(){
+	var user = "xxx";
+	var token_jwt = "xxx";
+	var base_url="http://127.0.0.1:3001"
 
-    var user = localStorage.getItem("user");
-    var token_jwt = localStorage.getItem("token_jwt");
+	function loadEnviroment(){
 
-    var miDiv = document.getElementById("user_workspace");
-    miDiv.innerText = `${user} Workspace`;
-}
+	    var user = localStorage.getItem("user");
+	    var token_jwt = localStorage.getItem("token_jwt");
 
-loadEnviroment()
+	    var miDiv = document.getElementById("user_workspace");
+	    miDiv.innerText = `${user} Workspace`;
+	}
+
+	loadEnviroment()
+
+});

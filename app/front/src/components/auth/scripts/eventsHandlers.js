@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
 	
-	let redirectUrl = ''
+	let redirectUrl = '/todo.html'
 	let apiKey = '';
 	let loginServiceBaseUrl = 'http://127.0.0.1:3000/';
 	let loginEndpoint = '/login';
@@ -29,6 +29,7 @@ document.addEventListener('DOMContentLoaded', function() {
 			console.log('Login Success:', token_jwt);
 			localStorage.setItem("user", user);
 			localStorage.setItem("token_jwt", token_jwt);
+			window.location.href = redirectUrl;
 		}
 		catch(error){
 			console.error('Login Error:', error);
