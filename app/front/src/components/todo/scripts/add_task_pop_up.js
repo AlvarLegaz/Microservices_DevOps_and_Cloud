@@ -60,11 +60,11 @@ document.addEventListener('DOMContentLoaded', function() {
             "done": document.getElementById('create_task_done_check').checked 
         };
 
-        console.log("Taread creada:", created_task);
+        console.log("Peticion para crear tarea:", created_task);
         try {
-            let response = await createTask(created_task);
-            console.log(`Updated request response: /${response}`);
-            //location.reload();
+            let response = await createTask(created_task, base_url, user, token_jwt);
+            console.log(`Taread creada: /${response}`);
+            location.reload();
             
         } catch (error) {
             console.error("Error updating task:", error);

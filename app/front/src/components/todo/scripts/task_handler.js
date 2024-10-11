@@ -1,6 +1,9 @@
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', async function() {
+
+	await loadEnviroment();
 
 	function displayTasks(tasks) {
+	
 	    const todoContainer = document.getElementById('toDo');
 	    const doingContainer = document.getElementById('doing');
 	    const doneContainer = document.getElementById('done');
@@ -9,6 +12,8 @@ document.addEventListener('DOMContentLoaded', function() {
 	    todoContainer.innerHTML = '';
 	    doingContainer.innerHTML = '';
 	    doneContainer.innerHTML = '';
+	    
+	    console.log("Tareas a mostar>"+tasks)
 
 	    tasks.forEach(task => {
 		card_id = card_id + 1;
@@ -52,5 +57,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	    });
 	}
 
-	getTasksList();
+	tasks = await getTasksList(base_url, user, token_jwt);
+	
+	displayTasks(tasks);
 });

@@ -61,7 +61,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         console.log(updated_task);
         try {
-            let response = await updateTaskById(taskId, updated_task);
+            let response = await updateTaskById(taskId, updated_task, base_url, user, token_jwt);
             console.log(`Updated request response: /${response}`);
             location.reload();
             

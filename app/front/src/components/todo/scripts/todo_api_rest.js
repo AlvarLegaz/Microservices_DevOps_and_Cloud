@@ -1,128 +1,136 @@
-document.addEventListener('DOMContentLoaded', function() {
+/**
+ * Fetches the list of tasks for a given user.
+ * @param {string} base_url - The base URL of the API.
+ * @param {string} user - The username.
+ * @param {string} token_jwt - The JWT token for authorization.
+ */
 
-	async function getTasksList() {
-	    try {
-		const response = await fetch(`${base_url}/todo/${user}`, {
-		    method: 'GET',
-		    headers: {
-		        'Authorization': `Bearer ${token_jwt}`,
-		        'Content-Type': 'application/json'
-		    },
-		    mode: 'cors'
-		});
+async function getTasksList(base_url, user, token_jwt) {
+    try {
+	const response = await fetch(`${base_url}/todo/${user}`, {
+	    method: 'GET',
+	    headers: {
+	        'Authorization': `Bearer ${token_jwt}`,
+	        'Content-Type': 'application/json'
+	    },
+	    mode: 'cors'
+	});
 
-		if (!response.ok) {
-		    const errorData = await response.json();
-		    throw new Error(JSON.stringify(errorData));
-		}
-
-		const data = await response.json();
-		console.log('Get list data:', data);
-		displayTasks(data);
-
-	    } catch (error) {
-		console.error('Error al cargar las tareas:', error);
-	    }
+	if (!response.ok) {
+	    const errorData = await response.json();
+	    throw new Error(JSON.stringify(errorData));
 	}
 
-	async function createTask(task) {
-	    try {
-		const response = await fetch(`{base_url}/todo/${user}`, {
-		    method: 'POST',
-		    headers: {
-		        'Authorization': `Bearer ${token_jwt}`,
-		        'Content-Type': 'application/json'
-		    },
-		    mode: 'cors',
-		    body: JSON.stringify(task)
-		});
+	const data = await response.json();
+	console.log('Get list data:', data);
+	return data;
 
-		if (!response.ok) {
-		    const errorData = await response.json();
-		    throw new Error(JSON.stringify(errorData));
-		}
+    } catch (error) {
+	console.error('Error al cargar las tareas:', error);
+    }
+}
 
-		const data = await response.json();
-		console.log('Updated task:', data);
-	    } 
-	    catch (error) {
-	    	console.error('Tarea:', task);
-		console.error('Error al cargar las tareas:', error);
-	    }
+
+async function createTask(task, base_url, user, token_jwt) {
+    try {
+	const response = await fetch(`${base_url}/todo/${user}`, {
+	    method: 'POST',
+	    headers: {
+	        'Authorization': `Bearer ${token_jwt}`,
+	        'Content-Type': 'application/json'
+	    },
+	    mode: 'cors',
+	    body: JSON.stringify(task)
+	});
+
+	if (!response.ok) {
+	    const errorData = await response.json();
+	    throw new Error(JSON.stringify(errorData));
 	}
 
-	async function getTaskById(id) {
-	    try {
-		const response = await fetch(`{base_url}/todo/${user}/${id}`, {
-		    method: 'GET',
-		    headers: {
-		        'Authorization': `Bearer ${token_jwt}`,
-		        'Content-Type': 'application/json'
-		    },
-		    mode: 'cors'
-		});
+	const data = await response.json();
+	console.log('Updated task:', data);
+    } 
 
-		if (!response.ok) {
-		    const errorData = await response.json();
-		    throw new Error(JSON.stringify(errorData));
-		}
+    catch (error) {
+    	console.error('Tarea:', task);
+	console.error('Error al cargar las tareas:', error);
+    }
+}
 
-		const task = await response.json();
-		return task;
+async function getTaskById(id, base_url, user) {
+    try {
+	const response = await fetch(`${base_url}/todo/${user}/${id}`, {
+	    method: 'GET',
+	    headers: {
+	        'Authorization': `Bearer ${token_jwt}`,
+	        'Content-Type': 'application/json'
+	    },
+	    mode: 'cors'
+	});
 
-	    } catch (error) {
-		console.error('Error al cargar la tarea:', error);
-		throw error;
-	    }
+
+	if (!response.ok) {
+	    const errorData = await response.json();
+	    throw new Error(JSON.stringify(errorData));
 	}
 
-	async function deleteTaskById(id) {
-	    try {
-		const response = await fetch(`{base_url}/todo/${user}/${id}`, {
-		    method: 'DELETE',
-		    headers: {
-		        'Authorization': `Bearer ${token_jwt}`,
-		        'Content-Type': 'application/json'
-		    },
-		    mode: 'cors'
-		});
+	const task = await response.json();
+	return task;
 
-		if (!response.ok) {
-		    const errorData = await response.json();
-		    throw new Error(JSON.stringify(errorData));
-		}
+    } catch (error) {
+	console.error('Error al cargar la tarea:', error);
+	throw error;
+    }
+}
 
-		return response;
 
-	    } catch (error) {
-		console.error('Error al cargar la tarea:', error);
-		throw error;
-	    }
+async function deleteTaskById(id, base_url, user) {
+    try {
+	const response = await fetch(`${base_url}/todo/${user}/${id}`, {
+	    method: 'DELETE',
+	    headers: {
+	        'Authorization': `Bearer ${token_jwt}`,
+	        'Content-Type': 'application/json'
+	    },
+	    mode: 'cors'
+	});
+
+	if (!response.ok) {
+	    const errorData = await response.json();
+	    throw new Error(JSON.stringify(errorData));
 	}
 
-	async function updateTaskById(id, task) {
-	    try {
-		const response = await fetch(`{base_url}/todo/${user}/${id}`, {
-		    method: 'PUT',
-		    headers: {
-		        'Authorization': `Bearer ${token_jwt}`,
-		        'Content-Type': 'application/json'
-		    },
-		    mode: 'cors',
-		    body: JSON.stringify(task)
-		});
+	return response;
 
-		if (!response.ok) {
-		    const errorData = await response.json();
-		    throw new Error(JSON.stringify(errorData));
-		}
+    } catch (error) {
+	console.error('Error al cargar la tarea:', error);
+	throw error;
+    }
+}
 
-		const data = await response.json();
-		console.log('Updated task:', data);
 
-	    } catch (error) {
-		console.error('Error al cargar las tareas:', error);
-	    }
+async function updateTaskById(id, task, base_url, user) {
+    try {
+	const response = await fetch(`${base_url}/todo/${user}/${id}`, {
+	    method: 'PUT',
+	    headers: {
+	        'Authorization': `Bearer ${token_jwt}`,
+	        'Content-Type': 'application/json'
+	    },
+	    mode: 'cors',
+	    body: JSON.stringify(task)
+	});
+
+	if (!response.ok) {
+	    const errorData = await response.json();
+	    throw new Error(JSON.stringify(errorData));
 	}
-	
-});
+
+	const data = await response.json();
+	console.log('Updated task:', data);
+
+    } catch (error) {
+	console.error('Error al cargar las tareas:', error);
+    }
+}
