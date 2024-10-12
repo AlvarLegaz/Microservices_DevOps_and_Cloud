@@ -24,11 +24,11 @@ document.addEventListener('DOMContentLoaded', function() {
     
             // Obtener el ID de la tarjeta que contiene el botón pulsado
             const card = event.target.closest('.card');
-            const cardId = card ? card.id : 'No ID found';
+            const taskId = card ? card.id : 'No ID found';
 
             try {
                 // Procesa respuesta
-                const task = await getTaskById(cardId);
+                const task = await getTaskById(taskId, base_url, user, token_jwt);
                 console.log("Task received:", task);
     
                 // Actualizar el párrafo con el ID de la tarjeta

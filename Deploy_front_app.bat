@@ -1,8 +1,10 @@
 @echo off
 echo Deploy front web service
 
-set PUERTO=8081
-set DIRECTORIO=app\front\src\components\
+set PORT=8081
+set DIRECTORY=./app/front/src/components
 
-python -m http.server %PUERTO% --directory %DIRECTORIO%
+python app\front\src\front_web_server.py %PORT% %DIRECTORY%
+
 pause
+

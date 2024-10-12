@@ -58,7 +58,7 @@ async function createTask(task, base_url, user, token_jwt) {
     }
 }
 
-async function getTaskById(id, base_url, user) {
+async function getTaskById(id, base_url, user, token_jwt) {
     try {
 	const response = await fetch(`${base_url}/todo/${user}/${id}`, {
 	    method: 'GET',

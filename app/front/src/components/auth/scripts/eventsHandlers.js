@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	let registerEndpoint = '/register';
 
     // Cargar config.json al cargar la página
-    fetch('/auth/config.json')
+    fetch('config.json')
         .then(response => response.json())
         .then(configData => {
             redirectUrl = configData.redirect_url_after_login_ok;
