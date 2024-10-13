@@ -1,7 +1,11 @@
 {
 	"login_apiKey": "aswes8sdgañlekrwaorpañlcasre",
 	
-	"login_service_base_url": "127.0.0.1",
+	"login_service_base_url": "http://127.0.0.1",
 	"login_service_base_port": "3000",
-	"redirect_url_after_login_ok": "/todo.html"
+	"login_service_endpoint": "/login",
+	"register_service_endpoint": "/register",
+	
+	"redirect_url_after_login_ok": "/todo"
+	
 }

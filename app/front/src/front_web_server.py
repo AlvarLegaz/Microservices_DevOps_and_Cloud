@@ -10,7 +10,8 @@ def run_server(port, directory):
                 self.send_response(301)
                 self.send_header('Location', '/auth')
                 self.end_headers()
-            return http.server.SimpleHTTPRequestHandler.do_GET(self)
+            else:
+                return http.server.SimpleHTTPRequestHandler.do_GET(self)
 
     os.chdir(directory)
 

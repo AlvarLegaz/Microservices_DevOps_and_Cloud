@@ -11,6 +11,7 @@ async function hashUrlWithApiKey(url, apiKey) {
 async function login(user, password, loginUrl, apiKey) {
 	
 	const data = { user, password };
+	console.log('Login url:', loginUrl);
 	console.log('Login body:', data);
 		
 	const hashCalculated = await hashUrlWithApiKey(loginUrl, apiKey);

@@ -1,17 +1,26 @@
 document.addEventListener('DOMContentLoaded', function() {
 	
-	let redirectUrl = '/todo.html'
-	let apiKey = '';
-	let loginServiceBaseUrl = 'http://127.0.0.1:3000/';
-	let loginEndpoint = '/login';
-	let registerEndpoint = '/register';
+	let redirectUrl='';
+	let apiKey='';
+	let loginServiceBaseUrl='';
+	let loginEndpoint='';
+	let registerEndpoint='';
 
     // Cargar config.json al cargar la página
     fetch('config.json')
         .then(response => response.json())
         .then(configData => {
-            redirectUrl = configData.redirect_url_after_login_ok;
+            
 			apiKey = configData.login_apiKey;
+			
+			loginServiceBaseUrl = `${configData.login_service_base_url}:${configData.login_service_base_port}`;
+			loginEndpoint = configData.login_service_endpoint;
+			registerEndpoint = configData.register_service_endpoint;
+			
+			redirectUrl = configData.redirect_url_after_login_ok;
+			
+			console.log("login service base url:" + loginServiceBaseUrl);
+			
         })
         .catch(error => {
             console.error('Error al leer el archivo config.json:', error);
@@ -23,6 +32,7 @@ document.addEventListener('DOMContentLoaded', function() {
 		const user = document.getElementById('username').value;
 		const password = document.getElementById('password').value;
 		const loginUrl = `${loginServiceBaseUrl}${loginEndpoint}`;
+		console.log("login endpoint:" + loginUrl);
 		
 		try{
 			token_jwt = await login(user, password, loginUrl, apiKey)
