@@ -5,11 +5,12 @@
  * @param {string} token_jwt - The JWT token for authorization.
  */
 
-async function getTasksList(base_url, user, token_jwt) {
+async function getTasksList(base_url, user, api_key, token_jwt) {
     try {
 	const response = await fetch(`${base_url}/todo/${user}`, {
 	    method: 'GET',
 	    headers: {
+			'X-ApiKey': apiKey,
 	        'Authorization': `Bearer ${token_jwt}`,
 	        'Content-Type': 'application/json'
 	    },
@@ -31,11 +32,12 @@ async function getTasksList(base_url, user, token_jwt) {
 }
 
 
-async function createTask(task, base_url, user, token_jwt) {
+async function createTask(task, base_url, user, api_key, token_jwt) {
     try {
 	const response = await fetch(`${base_url}/todo/${user}`, {
 	    method: 'POST',
 	    headers: {
+			'X-ApiKey': apiKey,
 	        'Authorization': `Bearer ${token_jwt}`,
 	        'Content-Type': 'application/json'
 	    },
@@ -58,11 +60,12 @@ async function createTask(task, base_url, user, token_jwt) {
     }
 }
 
-async function getTaskById(id, base_url, user, token_jwt) {
+async function getTaskById(id, base_url, user, api_key, token_jwt) {
     try {
 	const response = await fetch(`${base_url}/todo/${user}/${id}`, {
 	    method: 'GET',
 	    headers: {
+			'X-ApiKey': apiKey,
 	        'Authorization': `Bearer ${token_jwt}`,
 	        'Content-Type': 'application/json'
 	    },
@@ -85,11 +88,12 @@ async function getTaskById(id, base_url, user, token_jwt) {
 }
 
 
-async function deleteTaskById(id, base_url, user) {
+async function deleteTaskById(id, base_url, user,  api_key, token_jwt) {
     try {
 	const response = await fetch(`${base_url}/todo/${user}/${id}`, {
 	    method: 'DELETE',
 	    headers: {
+			'X-ApiKey': apiKey,
 	        'Authorization': `Bearer ${token_jwt}`,
 	        'Content-Type': 'application/json'
 	    },
@@ -110,11 +114,12 @@ async function deleteTaskById(id, base_url, user) {
 }
 
 
-async function updateTaskById(id, task, base_url, user) {
+async function updateTaskById(id, task, base_url, user,  api_key, token_jwt) {
     try {
 	const response = await fetch(`${base_url}/todo/${user}/${id}`, {
 	    method: 'PUT',
 	    headers: {
+			'X-ApiKey': apiKey,
 	        'Authorization': `Bearer ${token_jwt}`,
 	        'Content-Type': 'application/json'
 	    },

@@ -28,7 +28,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
             try {
                 // Procesa respuesta
-                const task = await getTaskById(taskId, base_url, user, token_jwt);
+                const task = await getTaskById(taskId, base_url, user, api_key, token_jwt);
                 console.log("Task received:", task);
     
                 // Actualizar el párrafo con el ID de la tarjeta

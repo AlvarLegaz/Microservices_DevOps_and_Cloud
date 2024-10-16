@@ -57,7 +57,7 @@ document.addEventListener('DOMContentLoaded', async function() {
 	    });
 	}
 
-	tasks = await getTasksList(base_url, user, token_jwt);
+	tasks = await getTasksList(base_url, user, api_key, token_jwt);
 	
 	displayTasks(tasks);
 });

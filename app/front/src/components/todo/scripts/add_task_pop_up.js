@@ -62,7 +62,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         console.log("Peticion para crear tarea:", created_task);
         try {
-            let response = await createTask(created_task, base_url, user, token_jwt);
+            let response = await createTask(created_task, base_url, user, api_key, token_jwt);
             console.log(`Taread creada: /${response}`);
             location.reload();
             

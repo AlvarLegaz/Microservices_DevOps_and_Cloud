@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', function() {
             console.log(`Envía delete a id: base_url/${cardId}`);
 
             try {
-                let response = await deleteTaskById(cardId, base_url, user, token_jwt);
+                let response = await deleteTaskById(cardId, base_url, user, api_key, token_jwt);
                 console.log(`Delete request response: /${response}`);
                 location.reload();
                 
