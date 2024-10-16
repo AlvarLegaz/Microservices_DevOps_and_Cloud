@@ -35,7 +35,8 @@ document.addEventListener('DOMContentLoaded', function() {
 		console.log("login endpoint:" + loginUrl);
 		
 		try{
-			token_jwt = await login(user, password, loginUrl, apiKey)
+			let response = await login(user, password, loginUrl, apiKey)
+			let token_jwt = response.access_token;
 			console.log('Login Success:', token_jwt);
 			localStorage.setItem("user", user);
 			localStorage.setItem("token_jwt", token_jwt);

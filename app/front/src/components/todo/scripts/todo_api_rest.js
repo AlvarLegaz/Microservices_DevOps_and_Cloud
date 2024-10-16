@@ -6,12 +6,14 @@
  */
 
 async function getTasksList(base_url, user, api_key, token_jwt) {
+	console.log('api key:', api_key);
+	console.log('token:', token_jwt);
     try {
 	const response = await fetch(`${base_url}/todo/${user}`, {
 	    method: 'GET',
 	    headers: {
-			'X-ApiKey': apiKey,
-	        'Authorization': `Bearer ${token_jwt}`,
+			'X-ApiKey': api_key,
+	        'Authorization': token_jwt,
 	        'Content-Type': 'application/json'
 	    },
 	    mode: 'cors'
@@ -37,7 +39,7 @@ async function createTask(task, base_url, user, api_key, token_jwt) {
 	const response = await fetch(`${base_url}/todo/${user}`, {
 	    method: 'POST',
 	    headers: {
-			'X-ApiKey': apiKey,
+			'X-ApiKey': api_key,
 	        'Authorization': `Bearer ${token_jwt}`,
 	        'Content-Type': 'application/json'
 	    },
@@ -65,7 +67,7 @@ async function getTaskById(id, base_url, user, api_key, token_jwt) {
 	const response = await fetch(`${base_url}/todo/${user}/${id}`, {
 	    method: 'GET',
 	    headers: {
-			'X-ApiKey': apiKey,
+			'X-ApiKey': api_key,
 	        'Authorization': `Bearer ${token_jwt}`,
 	        'Content-Type': 'application/json'
 	    },
@@ -93,7 +95,7 @@ async function deleteTaskById(id, base_url, user,  api_key, token_jwt) {
 	const response = await fetch(`${base_url}/todo/${user}/${id}`, {
 	    method: 'DELETE',
 	    headers: {
-			'X-ApiKey': apiKey,
+			'X-ApiKey': api_key,
 	        'Authorization': `Bearer ${token_jwt}`,
 	        'Content-Type': 'application/json'
 	    },
@@ -119,7 +121,7 @@ async function updateTaskById(id, task, base_url, user,  api_key, token_jwt) {
 	const response = await fetch(`${base_url}/todo/${user}/${id}`, {
 	    method: 'PUT',
 	    headers: {
-			'X-ApiKey': apiKey,
+			'X-ApiKey': api_key,
 	        'Authorization': `Bearer ${token_jwt}`,
 	        'Content-Type': 'application/json'
 	    },
